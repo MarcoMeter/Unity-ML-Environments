@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BasketCatchAgent : Agent
 {
@@ -15,6 +16,10 @@ public class BasketCatchAgent : Agent
     [Header("Physics")]
     [SerializeField]
     private Rigidbody _rigidbody;
+    [SerializeField]
+    private Text _scoreText;
+    private float _rewardScore = 0;
+    private float _punishmentScore = 0;
     [SerializeField]
     private float _agentSpeed = 12.0f;
     [SerializeField]
@@ -150,6 +155,8 @@ public class BasketCatchAgent : Agent
 	public override void AgentReset()
 	{
         transform.position = _agentOrigin;
+        _scoreText.text = "Score: 0";
+        _rewardScore = 0;
 	}
     #endregion
 
@@ -171,9 +178,19 @@ public class BasketCatchAgent : Agent
     /// Rewards the agent
     /// </summary>
     /// <param name="rewardSignal">Reward to signal</param>
-    public void Reward(float rewardSignal)
+    public void EvaluateReward(ItemType itemType)
     {
-        reward += rewardSignal;
+        if (itemType.Equals(ItemType.Reward))
+        {
+            reward += 1;
+            _rewardScore += 1;
+        }
+        else
+        {
+            reward -= 1;
+            _punishmentScore -= 1;
+        }
+        _scoreText.text = "<color=blue>R +" + _rewardScore + "</color>: <color=red>P " + _punishmentScore + "</color>: S: " + (_rewardScore + _punishmentScore);
     }
     #endregion
 }

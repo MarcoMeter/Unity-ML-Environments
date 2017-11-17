@@ -20,14 +20,7 @@ public class ItemDrop : MonoBehaviour
     {
         if (other.tag.Equals("Agent"))
         {
-            if (_type.Equals(ItemType.Reward))
-            {
-                other.GetComponent<BasketCatchAgent>().Reward(1);
-            }
-            else
-            {
-                other.GetComponent<BasketCatchAgent>().Reward(-1);
-            }
+            other.GetComponent<BasketCatchAgent>().EvaluateReward(_type);
             Destroy(gameObject);
         }
         else if (other.tag.Equals("Environment"))
