@@ -29,6 +29,7 @@ Upcoming:
 - Shooting Birds
 	- camera observation as input
 	- continuous outputs
+	
 ![Shooting Birds](documentation/images/ShootingBirds/sb.png)
 
 
