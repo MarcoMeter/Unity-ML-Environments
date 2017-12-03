@@ -82,16 +82,16 @@ public class DC2DAgent : Agent
         if(brain.brainType.Equals(BrainType.External))
         {
             // Agent's rotation
-            float zRotation = Mathf.Clamp(action[0], 0, 1);
-            transform.Rotate(new Vector3(0, 0, zRotation * 360));
+            float zRotation = Mathf.Clamp(action[0], -5, 5);
+            transform.Rotate(new Vector3(0, 0, zRotation));
 
             // Shoot
             float shootAction = Mathf.Clamp(action[1], 0, 1);
-            if(shootAction <= 0.5f)
+            if(shootAction <= 0.8f)
             {
                 // Don't shoot
             }
-            else if(shootAction > 0.5f)
+            else if(shootAction > 0.8f)
             {
                 Shoot();
             }
