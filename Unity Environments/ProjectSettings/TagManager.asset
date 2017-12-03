@@ -8,6 +8,7 @@ TagManager:
   - Environment
   - Punishment
   - Reward
+  - Comet
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - 
   - Reward
   - Punishment
-  - 
+  - Comet
   - 
   - 
   - 

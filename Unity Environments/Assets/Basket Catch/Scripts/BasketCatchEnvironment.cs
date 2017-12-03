@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnvironmentController : MonoBehaviour
+public class BasketCatchEnvironment : MonoBehaviour
 {
     #region Member Fields
     // Spawn properties

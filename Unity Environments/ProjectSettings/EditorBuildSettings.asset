@@ -5,9 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/MultiAgent.unity
+  - enabled: 0
+    path: Assets/Basket Catch/Scenes/BC MultiAgent.unity
     guid: bce0426a3f4b34146b0b3d28b5e16c75
   - enabled: 0
-    path: Assets/Scenes/SingleAgent.unity
+    path: Assets/Basket Catch/Scenes/BC SingleAgent.unity
     guid: e53b9bf85008e5a4cae60a689164720e
+  - enabled: 0
+    path: Assets/Destroy Comets 2D/Scenes/DC2D Single Agent.unity
+    guid: 8dd0c9d93fe1a084ea572bef85de4c09
+  - enabled: 1
+    path: Assets/Destroy Comets 2D/Scenes/DC2D Multi Agent.unity
+    guid: fcdfb25d247f465458a5c311f8a4c39c

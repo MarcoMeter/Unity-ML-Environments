@@ -6,11 +6,9 @@ using UnityEngine.UI;
 public class BasketCatchAgent : Agent
 {
     #region Member Fields
-    
-    
     private float _visionRayLength = 11.0f;
     [SerializeField]
-    private EnvironmentController _env;
+    private BasketCatchEnvironment _env;
     private float _intervalSize;
     private Vector3 _agentOrigin;
     [Header("Physics")]
