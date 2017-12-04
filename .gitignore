@@ -22,16 +22,16 @@
 *.pdb
 
 # Unity generated
-Unity Environments/Temp/
-Unity Environments/Obj/
-Unity Environments/UnityGenerated/
-Unity Environments/Library/
+Temp/
+Obj/
+UnityGenerated/
+Library/
 
 # Unity3D generated meta files
 *.pidb.meta
 
 # Unity3D Generated File On Crash Reports
-/Unity Environments/sysinfo.txt
+sysinfo.txt
 
 # Builds
 *.apk
@@ -42,10 +42,10 @@ Unity Environments/Library/
 *.x86
 
 # Tensorflow Sharp Files
-/Unity Environments/Assets/ML-Agents/Plugins/Android*
-/Unity Environments/Assets/ML-Agents/Plugins/iOS*
-/Unity Environments/Assets/ML-Agents/Plugins/Computer*
-/Unity Environments/Assets/ML-Agents/Plugins/System*
+ML-Agents/Plugins/Android*
+ML-Agents/Plugins/iOS*
+ML-Agents/Plugins/Computer*
+ML-Agents/Plugins/System*
 
 # Mac hidden files
 *.DS_Store
