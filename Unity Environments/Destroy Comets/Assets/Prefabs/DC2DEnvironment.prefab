@@ -287,6 +287,7 @@ MonoBehaviour:
   id: 0
   _rocket: {fileID: 1580308567524482, guid: d8829631ff560a34a8508314ec204a2c, type: 2}
   _rocketSpeed: 5
+  _rocketCooldown: 0.1
   _cannonBarrel: {fileID: 4115041913754852}
   _barrelEnd: {fileID: 4556750054929796}
   _numVisionRays: 16

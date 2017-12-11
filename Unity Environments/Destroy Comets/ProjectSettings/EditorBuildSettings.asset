@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/DC2D Single Agent.unity
+    path: Assets/Scenes/Single Agent.unity
     guid: 8dd0c9d93fe1a084ea572bef85de4c09
   - enabled: 1
-    path: Assets/Scenes/DC2D Multi Agent.unity
+    path: Assets/Scenes/Multi Agent.unity
     guid: fcdfb25d247f465458a5c311f8a4c39c

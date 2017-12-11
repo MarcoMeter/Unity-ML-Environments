@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DC2DAgent : Agent
@@ -8,6 +9,9 @@ public class DC2DAgent : Agent
     private GameObject _rocket;
     [SerializeField]
     private float _rocketSpeed = 5.0f;
+    [SerializeField]
+    private float _rocketCooldown = 0.33f;
+    private bool _isCooldown = false;
     [SerializeField]
     private Transform _cannonBarrel;
     [SerializeField]
@@ -68,6 +72,16 @@ public class DC2DAgent : Agent
 
         // Agent's z-rotation
         state.Add(transform.rotation.eulerAngles.z / 360);
+
+        // Agent's cooldown
+        if(_isCooldown)
+        {
+            state.Add(1);
+        }
+        else
+        {
+            state.Add(0);
+        }
 
         return state;
     }
@@ -161,8 +175,23 @@ public class DC2DAgent : Agent
     /// </summary>
     private void Shoot()
     {
-        GameObject rocket = Instantiate(_rocket, _cannonBarrel.position, transform.rotation);
-        rocket.GetComponent<Rigidbody>().velocity = (_barrelEnd.position - _cannonBarrel.position).normalized * _rocketSpeed;
+        if (!_isCooldown)
+        {
+            GameObject rocket = Instantiate(_rocket, _cannonBarrel.position, transform.rotation);
+            rocket.GetComponent<Rigidbody>().velocity = (_barrelEnd.position - _cannonBarrel.position).normalized * _rocketSpeed;
+            _isCooldown = true;
+            StartCoroutine(ProcessCooldown());
+        }
+    }
+
+    /// <summary>
+    /// Resets the cool down.
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator ProcessCooldown()
+    {
+        yield return new WaitForSeconds(_rocketCooldown);
+        _isCooldown = false;
     }
     #endregion
 }

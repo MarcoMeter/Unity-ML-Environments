@@ -122,7 +122,7 @@ public class BasketCatchAgent : Agent
     /// <param name="act">Action vector</param>
 	public override void AgentStep(float[] act)
 	{
-        if (brain.brainType != BrainType.Heuristic)
+        if (brain.brainType.Equals(BrainType.External))
         {
             if (brain.brainParameters.actionSpaceType == StateType.discrete)
             {
@@ -147,6 +147,12 @@ public class BasketCatchAgent : Agent
             {
                 Debug.LogError("Action Space should be discrete");
             }
+        }
+
+        if (brain.brainType.Equals(BrainType.Player))
+        {
+            float horizontalInput = Input.GetAxis("Horizontal");
+            _rigidbody.velocity = new Vector3(horizontalInput * _agentSpeed, 0, 0);
         }
     }
 

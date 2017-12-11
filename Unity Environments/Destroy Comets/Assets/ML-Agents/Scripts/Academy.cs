@@ -51,8 +51,13 @@ public abstract class Academy : MonoBehaviour
     private int frameToSkip;
     [SerializeField]
     private float waitTime;
+    [HideInInspector]
+    public bool isInference = true;
+    /**< \brief Do not modify : If true, the Academy will use inference 
+     * settings. */
+    private bool _isCurrentlyInference;
     [SerializeField]
-    private ScreenConfiguration trainingConfiguration = new ScreenConfiguration(80, 80, 1, 100.0f, 60);
+    private ScreenConfiguration trainingConfiguration = new ScreenConfiguration(80, 80, 1, 100.0f, -1);
     [SerializeField]
     private ScreenConfiguration inferenceConfiguration = new ScreenConfiguration(1280, 720, 5, 1.0f, 60);
     [SerializeField]
@@ -67,7 +72,7 @@ public abstract class Academy : MonoBehaviour
 
 
     [HideInInspector]
-    private Brain[] brains = new Brain[0];
+    private List<Brain> brains = new List<Brain>();
 
 
 
@@ -92,16 +97,7 @@ public abstract class Academy : MonoBehaviour
 
     public Communicator communicator;
     /**< \brief Do not modify : pointer to the communicator currently in 
-	 * use by the Academy. */
-    [HideInInspector]
-    public bool isInference;
-    /**< \brief Do not modify : If true, the Academy will use inference 
-	 * settings. */
-    [HideInInspector]
-    public bool windowResize;
-    /**< \brief Do not modify : Used to determine if the application window 
-	 * should be resized at reset. */
-
+     * use by the Academy. */
 
     private float timeAtStep;
 
@@ -114,20 +110,27 @@ public abstract class Academy : MonoBehaviour
             resetParameters[kv.key] = kv.value;
         }
 
-        brains = gameObject.GetComponentsInChildren<Brain>();
+        GetBrains(gameObject, brains);
         InitializeAcademy();
+
+        communicator = new ExternalCommunicator(this);
+        if (!communicator.CommunicatorHandShake())
+        {
+            communicator = null;
+        }
 
         foreach (Brain brain in brains)
         {
             brain.InitializeBrain();
         }
-
         if (communicator != null)
         {
             communicator.InitializeCommunicator();
             externalCommand = communicator.GetCommand();
         }
-        windowResize = true;
+            
+        isInference = (communicator == null);
+        _isCurrentlyInference = !isInference;
         done = true;
         acceptingSteps = true;
     }
@@ -140,18 +143,19 @@ public abstract class Academy : MonoBehaviour
     public virtual void InitializeAcademy()
     {
 
-
     }
 
 
     private void ConfigureEngine()
     {
-        if ((communicator != null) && (!isInference))
+        if ((!isInference))
         {
             Screen.SetResolution(trainingConfiguration.width, trainingConfiguration.height, false);
             QualitySettings.SetQualityLevel(trainingConfiguration.qualityLevel, true);
             Time.timeScale = trainingConfiguration.timeScale;
             Application.targetFrameRate = trainingConfiguration.targetFrameRate;
+            QualitySettings.vSyncCount = 0;
+            Monitor.SetActive(false);
         }
         else
         {
@@ -161,7 +165,6 @@ public abstract class Academy : MonoBehaviour
             Application.targetFrameRate = inferenceConfiguration.targetFrameRate;
         }
     }
-
 
     /// Environment specific step logic.
     /**
@@ -210,14 +213,11 @@ public abstract class Academy : MonoBehaviour
     // Called before AcademyReset().
     internal void Reset()
     {
-        if (windowResize)
-        {
-            ConfigureEngine();
-            windowResize = false;
-        }
         currentStep = 0;
         episodeCount++;
         done = false;
+        AcademyReset();
+
 
         foreach (Brain brain in brains)
         {
@@ -225,7 +225,6 @@ public abstract class Academy : MonoBehaviour
             brain.ResetDoneAndReward();
         }
 
-        AcademyReset();
     }
 
     // Instructs all brains to collect states from their agents.
@@ -267,7 +266,13 @@ public abstract class Academy : MonoBehaviour
      */
     void RunMdp()
     {
-        if (((communicator == null) || isInference) && (timeAtStep + waitTime > Time.time))
+        if (isInference != _isCurrentlyInference)
+        {
+            ConfigureEngine();
+            _isCurrentlyInference = isInference;
+        }
+        
+        if ((isInference) && (timeAtStep + waitTime > Time.time))
         {
             return;
         }
@@ -348,4 +353,17 @@ public abstract class Academy : MonoBehaviour
 
     }
 
+    private static void GetBrains(GameObject gameObject, List<Brain> brains)
+    {
+        var transform = gameObject.transform;
+        
+        for (var i = 0; i < transform.childCount; i++)
+        {
+            var child = transform.GetChild(i);
+            var brain = child.GetComponent<Brain>();
+
+            if (brain != null)
+                brains.Add(brain);
+        }
+    }
 }

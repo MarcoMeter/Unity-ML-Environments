@@ -64,3 +64,6 @@ ML-Agents/Plugins/System*
 *.gitignore.swp
 
 .DS_Store
+
+# Jupyter Notebook Generated
+/python/.ipynb_checkpoints
