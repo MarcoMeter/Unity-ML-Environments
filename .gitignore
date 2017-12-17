@@ -67,3 +67,9 @@ ML-Agents/Plugins/System*
 
 # Jupyter Notebook Generated
 /python/.ipynb_checkpoints
+
+
+*.ide-wal
+*.ide-shm
+*.ide
+*.lock
