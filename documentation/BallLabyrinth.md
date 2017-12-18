@@ -23,6 +23,12 @@ The agent receives input from an orthogonal camera which captures a top-down vie
 
 Rewards are signaled for reaching the final (red) goal (+1), moving out of bounds(-1) and falling through the wrong hole (-1).
 
+### Curriculum Learning
+
+The difficulty is gradually increased by spawning the ball farther away from the final hole each time.
+
+![Input Camera](images/BallLabyrinth/curriculum.png)
+
 ## Results
 
 A well working set of hyperparameters is not found yet.
