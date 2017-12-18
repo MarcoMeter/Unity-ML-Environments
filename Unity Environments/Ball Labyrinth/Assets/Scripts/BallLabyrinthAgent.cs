@@ -4,8 +4,9 @@ using UnityEngine;
 public class BallLabyrinthAgent : Agent
 {
     #region Member Fields
+    BallLabyrinthAcademy _academy;
     [SerializeField]
-    private Transform _ballOrigin;
+    private Transform[] _ballPositions;
     [SerializeField]
     private GameObject _ball;
     private Rigidbody _ballRigidbody;
@@ -34,6 +35,7 @@ public class BallLabyrinthAgent : Agent
     /// </summary>
     public override void InitializeAgent()
     {
+        _academy = GameObject.FindGameObjectWithTag("Academy").GetComponent<BallLabyrinthAcademy>();
         _ballRigidbody = _ball.GetComponent<Rigidbody>();
     }
 
@@ -42,8 +44,9 @@ public class BallLabyrinthAgent : Agent
     /// </summary>
     public override void AgentReset()
     {
-        _ball.transform.position = _ballOrigin.position;
+        _ball.transform.position = _ballPositions[_academy.BallPositionIndex].position;
         _ballRigidbody.velocity = Vector3.zero;
+        transform.localEulerAngles = Vector3.zero;
     }
 
     /// <summary>
@@ -118,30 +121,6 @@ public class BallLabyrinthAgent : Agent
     #endregion
 
     #region Private Functions
-    private float ClampAngle(float angle, float min, float max)
-    {
-        if (min < 0 && max > 0 && (angle > max || angle < min))
-        {
-            angle -= 360;
-            if (angle > max || angle < min)
-            {
-                if (Mathf.Abs(Mathf.DeltaAngle(angle, min)) < Mathf.Abs(Mathf.DeltaAngle(angle, max))) return min;
-                else return max;
-            }
-        }
-        else if (min > 0 && (angle > max || angle < min))
-        {
-            angle += 360;
-            if (angle > max || angle < min)
-            {
-                if (Mathf.Abs(Mathf.DeltaAngle(angle, min)) < Mathf.Abs(Mathf.DeltaAngle(angle, max))) return min;
-                else return max;
-            }
-        }
-
-        if (angle < min) return min;
-        else if (angle > max) return max;
-        else return angle;
-    }
+    
     #endregion
 }
