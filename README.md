@@ -10,6 +10,8 @@ This is a collection of several game simulations made with [Unity's ML Agents](h
  - Competitive Agents (among other agents)
  - ...
 
+For now, I am focusing on building interesting environments. Results, like trained models and plots, are not available currently. I will try to provide a set of working hyperparameters for each environment, so that you are able to achieve some results.
+ 
 ## Usage
 
 All environments are based on [Unity's ML Agents](https://github.com/Unity-Technologies/ml-agents). Please follow their instructions and references to setup your Python environment.
@@ -19,12 +21,23 @@ All environments are based on [Unity's ML Agents](https://github.com/Unity-Techn
 	- continuous inputs
 	- discrete outputs
 
+- [Ball Labyrinth](documentation/BallLabyrinth.md)
+	- continuous inputs, one camera observation
+	- continuous outputs
+	- curriculum learning
+	- training results are pending
+
+- [Destroy Comets](documentation/DestroyComets.md)
+	- continuous inputs
+	- continuous and discrete outputs
+	
+- [Simple Continuous Control](documentation/SimpleContinuousControl.md)
+	- continuous inputs, one camera observation (optionally)
+	- continuous outputs
+	- training results are pending for using camera observation
+	
 ## Potential Future Environments
 Upcoming:
-
-- Asteroid Destroyer
-	- continuous inputs
-	- continuous outputs
 
 - Shooting Birds
 	- camera observation as input
@@ -34,11 +47,6 @@ Upcoming:
 
 
 ----------
-
-
-- [Brio Labyrinth](http://www.brio.net/products/all-products/roleplay---games/labyrinth-game--boards)
-	- continuous inputs
-	- continuous outputs
 
 - [Beastly Rivals Onslaught (BRO)](https://github.com/MarcoMeter/Beastly-Rivals-Onslaught)
 	- continuous or camera input

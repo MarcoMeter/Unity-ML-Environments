@@ -85,7 +85,10 @@ MonoBehaviour:
     stateSize: 4
     actionSize: 2
     memorySize: 0
-    cameraResolutions: []
+    cameraResolutions:
+    - width: 64
+      height: 36
+      blackAndWhite: 1
     actionDescriptions:
     - 
     - 
@@ -96,7 +99,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  instanceID: -1138
+  instanceID: -1172
 --- !u!114 &114888688982264422
 MonoBehaviour:
   m_ObjectHideFlags: 1

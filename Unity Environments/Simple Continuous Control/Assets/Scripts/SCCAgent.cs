@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class SSCAgent : Agent
+public class SCCAgent : Agent
 {
     #region Member Fields
     [SerializeField]
@@ -49,8 +49,8 @@ public class SSCAgent : Agent
         // External: Execute the agents movement
         if (brain.brainType.Equals(BrainType.External))
         {
-            float moveHorizontal = Mathf.Clamp(action[0], -1, 1) * _speed;
-            float moveVertical = Mathf.Clamp(action[1], -1, 1) * _speed;
+            float moveHorizontal = Mathf.Clamp(action[0], -_speed, _speed);
+            float moveVertical = Mathf.Clamp(action[1], -_speed, _speed);
             _rigidbody.velocity = new Vector3(moveHorizontal, moveVertical, 0);
         }
 
