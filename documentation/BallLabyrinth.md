@@ -17,7 +17,7 @@ The agent is capable of rotating along the x and z axis continuously(negative an
 
 The agent receives input from an orthogonal camera which captures a top-down view. The observation is turned into a 64x64 grayscale. Additionally, the state space comprises the rotation of the board and the ball's velocity.
 
-![Input Camera](images/BallLabyrinth/camera.png)
+![Input Camera](images/BallLabyrinth/cameraInput.png)
 
 ### Reward Signals
 
