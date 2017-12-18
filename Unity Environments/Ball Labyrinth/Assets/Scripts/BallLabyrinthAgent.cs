@@ -60,8 +60,9 @@ public class BallLabyrinthAgent : Agent
             _ballRigidbody.velocity.x / 2f,
             _ballRigidbody.velocity.x / 2f,
             _ballRigidbody.velocity.x / 2f,
-            transform.rotation.eulerAngles.x,
-            transform.rotation.eulerAngles.z
+            transform.localEulerAngles.x / 360f,
+            transform.localEulerAngles.y / 360f,
+            transform.localEulerAngles.z / 360f
         };
         return state;
     }

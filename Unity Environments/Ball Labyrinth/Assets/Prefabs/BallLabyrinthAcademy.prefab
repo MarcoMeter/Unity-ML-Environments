@@ -82,12 +82,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brainParameters:
-    stateSize: 5
+    stateSize: 6
     actionSize: 2
     memorySize: 0
     cameraResolutions:
-    - width: 64
-      height: 64
+    - width: 48
+      height: 48
       blackAndWhite: 1
     actionDescriptions:
     - 
