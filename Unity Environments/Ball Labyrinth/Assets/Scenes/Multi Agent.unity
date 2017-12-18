@@ -126,6 +126,57 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   broadcast: 1
   brain: {fileID: 0}
+--- !u!1001 &138845719
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114864481138874168, guid: 9192d036bbc007c46ad04e3328604aa6,
+        type: 2}
+      propertyPath: brain
+      value: 
+      objectReference: {fileID: 141818586}
+    - target: {fileID: 1997295710517664, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_Name
+      value: BallLabyrinthEnvironment (5)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+  m_IsPrefabParent: 0
 --- !u!114 &141818586 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114154994389727532, guid: fd964b304166bf8478ea345901e16441,
@@ -169,18 +220,13 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114864481138874168, guid: 9192d036bbc007c46ad04e3328604aa6,
         type: 2}
       propertyPath: brain
       value: 
       objectReference: {fileID: 141818586}
-    - target: {fileID: 20029453709311360, guid: 9192d036bbc007c46ad04e3328604aa6,
-        type: 2}
-      propertyPath: m_TargetDisplay
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
   m_IsPrefabParent: 0
@@ -221,7 +267,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4329122755344392, guid: fd964b304166bf8478ea345901e16441, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114154994389727532, guid: fd964b304166bf8478ea345901e16441,
         type: 2}
@@ -253,6 +299,108 @@ MonoBehaviour:
   m_Name: (Clone)(Clone)(Clone)
   m_EditorClassIdentifier: 
   brain: {fileID: 141818586}
+--- !u!1001 &695941304
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114864481138874168, guid: 9192d036bbc007c46ad04e3328604aa6,
+        type: 2}
+      propertyPath: brain
+      value: 
+      objectReference: {fileID: 141818586}
+    - target: {fileID: 1997295710517664, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_Name
+      value: BallLabyrinthEnvironment (4)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &1234894033
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114864481138874168, guid: 9192d036bbc007c46ad04e3328604aa6,
+        type: 2}
+      propertyPath: brain
+      value: 
+      objectReference: {fileID: 141818586}
+    - target: {fileID: 1997295710517664, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_Name
+      value: BallLabyrinthEnvironment (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1427324846
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,6 +466,57 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1001 &1764187717
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114864481138874168, guid: 9192d036bbc007c46ad04e3328604aa6,
+        type: 2}
+      propertyPath: brain
+      value: 
+      objectReference: {fileID: 141818586}
+    - target: {fileID: 1997295710517664, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_Name
+      value: BallLabyrinthEnvironment (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+  m_IsPrefabParent: 0
 --- !u!114 &1827189947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -400,9 +599,60 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1865153525}
   m_LocalRotation: {x: 0.53729963, y: 0, z: 0, w: 0.8433915}
-  m_LocalPosition: {x: 0, y: 8, z: -3.85}
+  m_LocalPosition: {x: 15, y: 20, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 65, y: 0, z: 0}
+--- !u!1001 &1972401619
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212093482268824, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114864481138874168, guid: 9192d036bbc007c46ad04e3328604aa6,
+        type: 2}
+      propertyPath: brain
+      value: 
+      objectReference: {fileID: 141818586}
+    - target: {fileID: 1997295710517664, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+      propertyPath: m_Name
+      value: BallLabyrinthEnvironment (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 9192d036bbc007c46ad04e3328604aa6, type: 2}
+  m_IsPrefabParent: 0
