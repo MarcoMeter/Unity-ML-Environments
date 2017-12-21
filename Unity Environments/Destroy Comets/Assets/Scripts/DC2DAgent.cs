@@ -116,7 +116,6 @@ public class DC2DAgent : Agent
         {
             // Make cannon look at mouse
             transform.up = ((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2)transform.position).normalized;
-            CollectState();
         }
     }
     #endregion
