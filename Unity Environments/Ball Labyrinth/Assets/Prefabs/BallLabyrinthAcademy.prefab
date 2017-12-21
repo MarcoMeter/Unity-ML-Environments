@@ -82,7 +82,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brainParameters:
-    stateSize: 6
+    stateSize: 5
     actionSize: 2
     memorySize: 0
     cameraResolutions:
@@ -94,12 +94,12 @@ MonoBehaviour:
     - 
     actionSpaceType: 1
     stateSpaceType: 1
-  brainType: 2
+  brainType: 0
   CoreBrains:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  instanceID: -1602
+  instanceID: -1618
 --- !u!114 &114781173271482536
 MonoBehaviour:
   m_ObjectHideFlags: 1
