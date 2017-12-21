@@ -58,10 +58,9 @@ public class BallLabyrinthAgent : Agent
         List<float> state = new List<float>
         {
             _ballRigidbody.velocity.x / 2f,
-            _ballRigidbody.velocity.x / 2f,
-            _ballRigidbody.velocity.x / 2f,
+            _ballRigidbody.velocity.y / 2f,
+            _ballRigidbody.velocity.z / 2f,
             transform.localEulerAngles.x / 360f,
-            transform.localEulerAngles.y / 360f,
             transform.localEulerAngles.z / 360f
         };
         return state;
@@ -75,26 +74,20 @@ public class BallLabyrinthAgent : Agent
     {
         if (brain.brainType.Equals(BrainType.External))
         {
-            // X rotation
-            float action_x = Mathf.Clamp(action[1], -2f, 2f);
-            if ((gameObject.transform.rotation.x < 0.25f && action_x > 0f) ||
-                (gameObject.transform.rotation.x > -0.25f && action_x < 0f))
-            {
-                gameObject.transform.Rotate(new Vector3(1, 0, 0), action_x);
-            }
-
             // Z rotation
-            float action_z = Mathf.Clamp(action[0], -2f, 2f);
-            if ((gameObject.transform.rotation.z < 0.25f && action_z > 0f) ||
-                (gameObject.transform.rotation.z > -0.25f && action_z < 0f))
-            {
-                gameObject.transform.Rotate(new Vector3(0, 0, 1), action_z);
-            }
+            float zRotation = Mathf.Clamp(action[0], -1f, 1f);
+            transform.Rotate(new Vector3(0, 0, -1), zRotation, Space.Self);
+
+            // X rotation
+            float xRotation = Mathf.Clamp(action[1], -1f, 1f);
+            transform.Rotate(new Vector3(1, 0, 0), xRotation, Space.World);
+
+            
         }
         else if(brain.brainType.Equals(BrainType.Player))
         {
-            gameObject.transform.Rotate(new Vector3(1, 0, 0), _playerVertical);
-            gameObject.transform.Rotate(new Vector3(0, 0, -1), _playerHorizontal);
+            transform.Rotate(new Vector3(0, 0, -1), _playerHorizontal, Space.Self);
+            transform.Rotate(new Vector3(1, 0, 0), _playerVertical, Space.World);
         }
 
         // TODO: Maybe clamp rotation
