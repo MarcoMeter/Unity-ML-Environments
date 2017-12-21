@@ -82,12 +82,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brainParameters:
-    stateSize: 4
+    stateSize: 5
     actionSize: 2
     memorySize: 0
     cameraResolutions:
-    - width: 64
-      height: 36
+    - width: 32
+      height: 32
       blackAndWhite: 1
     actionDescriptions:
     - 
@@ -99,7 +99,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  instanceID: -1172
+  instanceID: 12242
 --- !u!114 &114888688982264422
 MonoBehaviour:
   m_ObjectHideFlags: 1

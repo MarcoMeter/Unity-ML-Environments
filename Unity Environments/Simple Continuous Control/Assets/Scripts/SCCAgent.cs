@@ -37,6 +37,7 @@ public class SCCAgent : Agent
         Vector3 vel = _rigidbody.velocity.normalized;
         state.Add(vel.x);
         state.Add(vel.y);
+        state.Add(Vector3.Distance(_env.TargetPosition, transform.position) / 16);
         return state;
     }
 
@@ -49,9 +50,10 @@ public class SCCAgent : Agent
         // External: Execute the agents movement
         if (brain.brainType.Equals(BrainType.External))
         {
-            float moveHorizontal = Mathf.Clamp(action[0], -_speed, _speed);
-            float moveVertical = Mathf.Clamp(action[1], -_speed, _speed);
+            float moveHorizontal = Mathf.Clamp(action[0], -1, 1) * _speed;
+            float moveVertical = Mathf.Clamp(action[1], -1, 1) * _speed;
             _rigidbody.velocity = new Vector3(moveHorizontal, moveVertical, 0);
+            //reward -= 0.001f;
         }
 
         // Player: Input behavior
