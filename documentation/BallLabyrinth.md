@@ -15,13 +15,13 @@ The agent is capable of rotating along the x and z axis continuously(negative an
 
 ### State Input
 
-The agent receives input from an orthogonal camera which captures a top-down view. The observation is turned into a 64x64 grayscale. Additionally, the state space comprises the rotation of the board and the ball's velocity.
+The agent receives input from an orthogonal camera which captures a top-down view. The observation is turned into a 64x64 grayscale. Additionally, the state space comprises the rotation of the board and the ball's velocity. Additionally, the agent knows if the ball is inside a corner or not.
 
 ![Input Camera](images/BallLabyrinth/cameraInput.png)
 
 ### Reward Signals
 
-Rewards are signaled for reaching the final (red) goal (+1), moving out of bounds(-1) and falling through the wrong hole (-1).
+Rewards are signaled for reaching the final (red) goal (+1), moving out of bounds(-1) and falling through the wrong hole (-1). A small punishment is handed out if the ball is located inside a corner (-0.075).
 
 ### Curriculum Learning
 
@@ -30,5 +30,4 @@ The difficulty is gradually increased by spawning the ball farther away from the
 ![Input Camera](images/BallLabyrinth/curriculum.png)
 
 ## Results
-
-A well working set of hyperparameters is not found yet.
+So far the agent reaches lesson 3, but cannot get passed that. Sometimes, the agent does not pass lesson 0. So the training is pretty unstable.
