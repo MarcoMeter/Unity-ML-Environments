@@ -82,24 +82,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brainParameters:
-    stateSize: 5
+    stateSize: 6
     actionSize: 2
     memorySize: 0
     cameraResolutions:
-    - width: 48
-      height: 48
+    - width: 64
+      height: 64
       blackAndWhite: 1
     actionDescriptions:
     - 
     - 
     actionSpaceType: 1
     stateSpaceType: 1
-  brainType: 0
+  brainType: 2
   CoreBrains:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  instanceID: -1618
+  instanceID: 27894
 --- !u!114 &114781173271482536
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32ae99262b3a7a742a1b43628858f603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSteps: 0
+  maxSteps: 10000
   frameToSkip: 4
   waitTime: 0
   isInference: 1
@@ -129,7 +129,7 @@ MonoBehaviour:
     targetFrameRate: 60
   defaultResetParameters:
   - key: positionIndex
-    value: 12
+    value: 0
   done: 0
   episodeCount: 0
   currentStep: 0

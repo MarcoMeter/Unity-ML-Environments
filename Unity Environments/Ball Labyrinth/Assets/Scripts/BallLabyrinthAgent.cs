@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BallLabyrinthAgent : Agent
@@ -9,7 +10,10 @@ public class BallLabyrinthAgent : Agent
     private Transform[] _ballPositions;
     [SerializeField]
     private GameObject _ball;
+    [SerializeField]
+    private float _maxRotation = 45f;
     private Rigidbody _ballRigidbody;
+    private BallBehavior _ballBehavior;
     private float _playerHorizontal = 0f;
     private float _playerVertical = 0f;
     #endregion
@@ -37,6 +41,7 @@ public class BallLabyrinthAgent : Agent
     {
         _academy = GameObject.FindGameObjectWithTag("Academy").GetComponent<BallLabyrinthAcademy>();
         _ballRigidbody = _ball.GetComponent<Rigidbody>();
+        _ballBehavior = _ball.GetComponent<BallBehavior>();
     }
 
     /// <summary>
@@ -60,8 +65,9 @@ public class BallLabyrinthAgent : Agent
             _ballRigidbody.velocity.x / 2f,
             _ballRigidbody.velocity.y / 2f,
             _ballRigidbody.velocity.z / 2f,
-            transform.localEulerAngles.x / 360f,
-            transform.localEulerAngles.z / 360f
+            transform.localEulerAngles.x - (-_maxRotation) / _maxRotation - (-_maxRotation),
+            transform.localEulerAngles.z - (-_maxRotation) / _maxRotation - (-_maxRotation),
+            Convert.ToSingle(_ballBehavior.IsCornered)
         };
         return state;
     }
@@ -81,8 +87,6 @@ public class BallLabyrinthAgent : Agent
             // X rotation
             float xRotation = Mathf.Clamp(action[1], -1f, 1f);
             transform.Rotate(new Vector3(1, 0, 0), xRotation, Space.World);
-
-            
         }
         else if(brain.brainType.Equals(BrainType.Player))
         {
@@ -90,13 +94,16 @@ public class BallLabyrinthAgent : Agent
             transform.Rotate(new Vector3(1, 0, 0), _playerVertical, Space.World);
         }
 
-        // TODO: Maybe clamp rotation
+        // Clamp rotation
+        var rotateX = Mathf.Clamp((transform.localEulerAngles.x <= 180) ? transform.localEulerAngles.x : -(360 - transform.localEulerAngles.x), -_maxRotation, _maxRotation);
+        var rotateZ = Mathf.Clamp((transform.localEulerAngles.z <= 180) ? transform.localEulerAngles.z : -(360 - transform.localEulerAngles.z), -_maxRotation, _maxRotation);
+        transform.localEulerAngles = new Vector3(rotateX, 0, rotateZ);
     }
     #endregion
 
     #region Public Functions
     /// <summary>
-    /// Ball fell through the wrong hole.
+    /// Reward Signal: Ball fell through the wrong hole.
     /// </summary>
     public void BallOutOfBounds()
     {
@@ -105,16 +112,20 @@ public class BallLabyrinthAgent : Agent
     }
 
     /// <summary>
-    /// Ball reached the final hole.
+    /// Reward Signal: Ball reached the final hole.
     /// </summary>
     public void BallFinish()
     {
         done = true;
-        reward += 1f;
+        reward += 1.25f;
     }
-    #endregion
 
-    #region Private Functions
-    
+    /// <summary>
+    /// Reward Signal: Ball is stuck in a corner.
+    /// </summary>
+    public void BallCornered()
+    {
+        reward += -0.075f;
+    }
     #endregion
 }
