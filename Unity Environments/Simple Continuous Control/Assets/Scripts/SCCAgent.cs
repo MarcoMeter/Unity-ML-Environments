@@ -50,10 +50,33 @@ public class SCCAgent : Agent
         // External: Execute the agents movement
         if (brain.brainType.Equals(BrainType.External))
         {
-            float moveHorizontal = Mathf.Clamp(action[0], -1, 1) * _speed;
-            float moveVertical = Mathf.Clamp(action[1], -1, 1) * _speed;
-            _rigidbody.velocity = new Vector3(moveHorizontal, moveVertical, 0);
-            //reward -= 0.001f;
+            // Two continuous actions
+            if (brain.brainParameters.actionSpaceType == StateType.continuous)
+            {
+                float moveHorizontal = Mathf.Clamp(action[0], -1, 1) * _speed;
+                float moveVertical = Mathf.Clamp(action[1], -1, 1) * _speed;
+                _rigidbody.velocity = new Vector3(moveHorizontal, moveVertical, 0);
+            }
+            // Four discrete actions
+            else
+            {
+                int actionIndex = (int)action[0];
+                switch (actionIndex)
+                {
+                    case 0:
+                        _rigidbody.velocity = new Vector3(-_speed, 0, 0);
+                        break;
+                    case 1:
+                        _rigidbody.velocity = new Vector3(_speed, 0, 0);
+                        break;
+                    case 2:
+                        _rigidbody.velocity = new Vector3(0, -_speed, 0);
+                        break;
+                    case 4:
+                        _rigidbody.velocity = new Vector3(0, _speed, 0);
+                        break;
+                }
+            }
         }
 
         // Player: Input behavior
