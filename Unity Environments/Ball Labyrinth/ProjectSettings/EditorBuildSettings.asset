@@ -5,9 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Single Agent.unity
     guid: 889d8fac27c06a24c8f4a7a1742cd2e9
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Multi Agent.unity
     guid: b288039871ebbb34ba56145da769ea09

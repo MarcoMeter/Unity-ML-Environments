@@ -82,13 +82,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brainParameters:
-    stateSize: 6
+    stateSize: 43
     actionSize: 2
     memorySize: 0
-    cameraResolutions:
-    - width: 64
-      height: 64
-      blackAndWhite: 1
+    cameraResolutions: []
     actionDescriptions:
     - 
     - 
@@ -99,7 +96,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  instanceID: 27894
+  instanceID: -1724
 --- !u!114 &114781173271482536
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -129,7 +126,7 @@ MonoBehaviour:
     targetFrameRate: 60
   defaultResetParameters:
   - key: positionIndex
-    value: 0
+    value: 12
   done: 0
   episodeCount: 0
   currentStep: 0

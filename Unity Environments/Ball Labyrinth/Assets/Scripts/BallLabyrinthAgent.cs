@@ -12,6 +12,8 @@ public class BallLabyrinthAgent : Agent
     private GameObject _ball;
     [SerializeField]
     private float _maxRotation = 45f;
+    [SerializeField]
+    private Transform[] _cornerPositions;
     private Rigidbody _ballRigidbody;
     private BallBehavior _ballBehavior;
     private float _playerHorizontal = 0f;
@@ -60,15 +62,11 @@ public class BallLabyrinthAgent : Agent
     /// <returns></returns>
     public override List<float> CollectState()
     {
-        List<float> state = new List<float>
-        {
-            _ballRigidbody.velocity.x / 2f,
-            _ballRigidbody.velocity.y / 2f,
-            _ballRigidbody.velocity.z / 2f,
-            transform.localEulerAngles.x - (-_maxRotation) / _maxRotation - (-_maxRotation),
-            transform.localEulerAngles.z - (-_maxRotation) / _maxRotation - (-_maxRotation),
-            Convert.ToSingle(_ballBehavior.IsCornered)
-        };
+        // Total 43 inputs
+        List<float> state = _ballBehavior.CollectBallState(); // 40 inputs collected
+        state.Add(transform.localEulerAngles.x / 360f);
+        state.Add(transform.localEulerAngles.z / 360f);
+        state.Add(Convert.ToSingle(_ballBehavior.IsCornered));
         return state;
     }
 
@@ -125,7 +123,7 @@ public class BallLabyrinthAgent : Agent
     /// </summary>
     public void BallCornered()
     {
-        reward += -0.075f;
+        reward += -0.05f;
     }
     #endregion
 }
