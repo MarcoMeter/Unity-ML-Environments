@@ -49,7 +49,6 @@ public class BallBehavior : MonoBehaviour
 
     private void FixedUpdate()
     {
-        CollectBallState();
         // Check if the ball is out of bounds based on position (not collision like above)
         Plane board = new Plane(_agent.transform.up, 0.1f);
         float distance = board.GetDistanceToPoint(transform.localPosition);
@@ -123,7 +122,6 @@ public class BallBehavior : MonoBehaviour
         if(Physics.Raycast(verticalRay, out floorHit, 0.5f))
         {
             ballState.Add(floorHit.distance / 0.5f);
-            Debug.Log(floorHit.distance);
         }
         else
         {
