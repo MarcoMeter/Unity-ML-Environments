@@ -5,6 +5,8 @@ using UnityEngine;
 public class BallLabyrinthAgent : Agent
 {
     #region Member Fields
+    [SerializeField]
+    private int _ballSpawnPositionIndex = 0;
     BallLabyrinthAcademy _academy;
     [SerializeField]
     private Transform[] _ballPositions;
@@ -51,7 +53,7 @@ public class BallLabyrinthAgent : Agent
     /// </summary>
     public override void AgentReset()
     {
-        _ball.transform.position = _ballPositions[_academy.BallPositionIndex].position;
+        _ball.transform.position = _ballPositions[_ballSpawnPositionIndex].position;
         _ballRigidbody.velocity = Vector3.zero;
         transform.localEulerAngles = Vector3.zero;
     }
@@ -115,7 +117,7 @@ public class BallLabyrinthAgent : Agent
     public void BallFinish()
     {
         done = true;
-        reward += 1.25f;
+        reward += 1.5f;
     }
 
     /// <summary>
@@ -123,7 +125,7 @@ public class BallLabyrinthAgent : Agent
     /// </summary>
     public void BallCornered()
     {
-        reward += -0.05f;
+        reward += -0.25f;
     }
     #endregion
 }
