@@ -81,7 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bac8ecf155741b4a83cdb1ef01d8707, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSteps: 36000
+  maxSteps: 5000
   frameToSkip: 0
   waitTime: 0
   isInference: 0
@@ -113,18 +113,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brainParameters:
-    stateSize: 18
-    actionSize: 2
+    stateSize: 51
+    actionSize: 4
     memorySize: 0
     cameraResolutions: []
     actionDescriptions:
-    - Rotate
+    - Rotate Left
+    - Rotate Right
     - Shoot
-    actionSpaceType: 1
+    - 
+    actionSpaceType: 0
     stateSpaceType: 1
   brainType: 2
   CoreBrains:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  instanceID: 18338
+  instanceID: 17638

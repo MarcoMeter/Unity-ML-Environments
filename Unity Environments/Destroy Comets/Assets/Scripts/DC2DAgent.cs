@@ -10,12 +10,10 @@ public class DC2DAgent : Agent
     [SerializeField]
     private float _rocketSpeed = 5.0f;
     [SerializeField]
-    private float _rocketCooldown = 0.33f;
-    private bool _isCooldown = false;
-    [SerializeField]
     private Transform _cannonBarrel;
     [SerializeField]
     private Transform _barrelEnd;
+    private float _maxRotationStep = 5;
 
     [Header("Agent Inputs")]
     [SerializeField]
@@ -50,38 +48,40 @@ public class DC2DAgent : Agent
         _rays = new List<Ray>();
         for (int i = 0; i < _numVisionRays; i++)
         {
-            Vector3 circumferencePoint = new Vector3(transform.position.x + (_visionRayLength * Mathf.Cos((transform.rotation.eulerAngles.z + (_angleStep * i)) * Mathf.Deg2Rad)),
-                                            transform.position.y + (_visionRayLength * Mathf.Sin((transform.rotation.eulerAngles.z + (_angleStep * i)) * Mathf.Deg2Rad)),
+            Vector3 circumferencePoint = new Vector3(transform.position.x + (_visionRayLength * Mathf.Cos((+  0 + (_angleStep * i)) * Mathf.Deg2Rad)),
+                                            transform.position.y + (_visionRayLength * Mathf.Sin((transform.rotation.eulerAngles.z + 0 + (_angleStep * i)) * Mathf.Deg2Rad)),
                                             0);
             _rays.Add(new Ray(transform.position, (circumferencePoint - transform.position).normalized));
         }
 
-        // Execute raycasts to query the agent's vision
+        // Execute raycasts to query the agent's vision (3 inputs per raycast)
         foreach (var ray in _rays)
         {
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, _visionRayLength, _layerMask))
             {
+                Vector3 cometVelocity = hit.rigidbody.velocity.normalized; // velocity of the comet
+                state.Add(cometVelocity.x);
+                state.Add(cometVelocity.y);
                 state.Add(hit.distance / (_visionRayLength)); // distance to the comet
+
             }
             else
             {
-                state.Add(0.0f); // if no comet is spotted
+                // if no comet is spotted
+                state.Add(0.0f);
+                state.Add(0.0f);
+                state.Add(0.0f);
             }
         }
 
         // Agent's z-rotation
         state.Add(transform.rotation.eulerAngles.z / 360);
 
-        // Agent's cooldown
-        if(_isCooldown)
-        {
-            state.Add(1);
-        }
-        else
-        {
-            state.Add(0);
-        }
+        // Agent's shooting direction
+        Vector3 shootingDirection = (_barrelEnd.position - _cannonBarrel.position).normalized;
+        state.Add(shootingDirection.x);
+        state.Add(shootingDirection.y);
 
         return state;
     }
@@ -90,24 +90,53 @@ public class DC2DAgent : Agent
     /// Execution of actions inside of FixedUpdate()
     /// </summary>
     /// <param name="act">Action vector</param>
-    public override void AgentStep(float[] action)
+    public override void AgentStep(float[] act)
     {
         // External control
         if(brain.brainType.Equals(BrainType.External))
         {
-            // Agent's rotation
-            float zRotation = Mathf.Clamp(action[0], -5, 5);
-            transform.Rotate(new Vector3(0, 0, zRotation));
+            // Two continuous actions: rotate and shoot
+            if (brain.brainParameters.actionSpaceType.Equals(StateType.continuous))
+            {
+                // Agent's rotation
+                float zRotation = Mathf.Clamp(act[0], -_maxRotationStep, _maxRotationStep);
+                transform.Rotate(new Vector3(0, 0, zRotation));
 
-            // Shoot
-            float shootAction = Mathf.Clamp(action[1], 0, 1);
-            if(shootAction <= 0.8f)
-            {
-                // Don't shoot
+                // Shoot
+                float shootAction = Mathf.Clamp(act[1], 0, 1);
+                if (shootAction <= 0.8f)
+                {
+                    // Don't shoot
+                }
+                else if (shootAction > 0.8f)
+                {
+                    Shoot();
+                }
             }
-            else if(shootAction > 0.8f)
+            // Four discrete actions: rotate left, right, shoot and do noting
+            else if (brain.brainParameters.actionSpaceType.Equals(StateType.discrete))
             {
-                Shoot();
+                int action = (int)act[0];
+
+                if (action == 0)
+                {
+                    // Rotate Left
+                    transform.Rotate(new Vector3(0, 0, -_maxRotationStep));
+                }
+                else if (action == 1)
+                {
+                    // Rotate Right
+                    transform.Rotate(new Vector3(0, 0, _maxRotationStep));
+                }
+                else if(action == 2)
+                {
+                    // Shoot
+                    Shoot();
+                }
+                else
+                {
+                    // Do nothing
+                }
             }
         }
 
@@ -174,23 +203,8 @@ public class DC2DAgent : Agent
     /// </summary>
     private void Shoot()
     {
-        if (!_isCooldown)
-        {
-            GameObject rocket = Instantiate(_rocket, _cannonBarrel.position, transform.rotation);
-            rocket.GetComponent<Rigidbody>().velocity = (_barrelEnd.position - _cannonBarrel.position).normalized * _rocketSpeed;
-            _isCooldown = true;
-            StartCoroutine(ProcessCooldown());
-        }
-    }
-
-    /// <summary>
-    /// Resets the cool down.
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator ProcessCooldown()
-    {
-        yield return new WaitForSeconds(_rocketCooldown);
-        _isCooldown = false;
+        GameObject rocket = Instantiate(_rocket, _cannonBarrel.position, transform.rotation);
+        rocket.GetComponent<Rigidbody>().velocity = (_barrelEnd.position - _cannonBarrel.position).normalized * _rocketSpeed;
     }
     #endregion
 }

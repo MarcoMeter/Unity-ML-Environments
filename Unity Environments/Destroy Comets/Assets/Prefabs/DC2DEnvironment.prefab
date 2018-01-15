@@ -275,26 +275,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   brain: {fileID: 0}
   observations: []
-  maxStep: 36000
+  maxStep: 0
   resetOnDone: 1
   reward: 0
   done: 0
   value: 0
-  CummulativeReward: 0
+  CumulativeReward: 0
   stepCounter: 0
   agentStoredAction: []
   memory: []
   id: 0
   _rocket: {fileID: 1580308567524482, guid: d8829631ff560a34a8508314ec204a2c, type: 2}
   _rocketSpeed: 5
-  _rocketCooldown: 0.1
   _cannonBarrel: {fileID: 4115041913754852}
   _barrelEnd: {fileID: 4556750054929796}
   _numVisionRays: 16
   _visionRayLength: 5
   _layerMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 1280
 --- !u!114 &114961585986145254
 MonoBehaviour:
   m_ObjectHideFlags: 1
