@@ -38,12 +38,11 @@ public class EnvironmentController : MonoBehaviour
     {
         BuildWalls();
         BuildObstacles();
-        SpawnTarget();
     }
     #endregion
 
     #region Public Functions
-   public void TargetHit()
+   public void ResetTarget()
     {
         Destroy(_currentTarget);
         SpawnTarget();

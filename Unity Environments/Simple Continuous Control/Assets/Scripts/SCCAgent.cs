@@ -22,6 +22,7 @@ public class SCCAgent : Agent
     public override void AgentReset()
     {
         transform.position = _origin;
+        _env.ResetTarget();
     }
 
     /// <summary>
@@ -99,7 +100,7 @@ public class SCCAgent : Agent
         if(other.tag.Equals("Target"))
         {
             reward += 1;
-            _env.TargetHit();
+            _env.ResetTarget();
         }
     }
     #endregion
