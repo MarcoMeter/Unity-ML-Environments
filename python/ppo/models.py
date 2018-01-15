@@ -93,13 +93,15 @@ class PPOModel(object):
                                              name='observation_0')
         streams = []
         for i in range(num_streams):
-            self.conv1 = tf.layers.conv2d(self.observation_in, 16, kernel_size=[8, 8], strides=[4, 4],
-                                          use_bias=False, activation=activation)
-            self.conv2 = tf.layers.conv2d(self.conv1, 32, kernel_size=[4, 4], strides=[2, 2],
-                                          use_bias=False, activation=activation)
-            hidden = c_layers.flatten(self.conv2)
+            self.conv1 = tf.layers.conv2d(self.observation_in, 16, kernel_size=[5, 5], padding="same", strides=[2, 2],
+                                          use_bias=True, activation=activation)
+            self.pool1 = tf.layers.max_pooling2d(inputs=self.conv1, pool_size=[2, 2], strides=2)
+            self.conv2 = tf.layers.conv2d(self.pool1, 32, kernel_size=[5, 5], padding="same", strides=[2, 2],
+                                          use_bias=True, activation=activation)
+            self.pool2 = tf.layers.max_pooling2d(inputs=self.conv2, pool_size=[2, 2], strides=2)
+            hidden = c_layers.flatten(self.pool2)
             for j in range(num_layers):
-                hidden = tf.layers.dense(hidden, h_size, use_bias=False, activation=activation)
+                hidden = tf.layers.dense(hidden, h_size, use_bias=True, activation=activation)
             streams.append(hidden)
         return streams
 
