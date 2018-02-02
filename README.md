@@ -56,3 +56,7 @@ Upcoming:
 - [Jenga](http://www.jenga.com/)
 	- multiple camera observations as input
 	- continuous output
+	
+- Table Kicker
+	- adversarial self-play
+	- competitive and cooperative agents
