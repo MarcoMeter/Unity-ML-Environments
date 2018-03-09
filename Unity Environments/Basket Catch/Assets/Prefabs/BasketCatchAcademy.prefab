@@ -97,7 +97,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  instanceID: -2474
+  instanceID: 11082
 --- !u!114 &114569279897106562
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9af83cd96d4bc4088a966af174446d1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSteps: 36000
+  maxSteps: 5000
   frameToSkip: 0
   waitTime: 0
   isInference: 0
