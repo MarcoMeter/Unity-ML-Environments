@@ -115,7 +115,7 @@ public class BallLabyrinthAgent : Agent
     public void BallFinish()
     {
         done = true;
-        reward += 1.0f;
+        reward += 1.25f;
     }
 
     /// <summary>
@@ -123,7 +123,7 @@ public class BallLabyrinthAgent : Agent
     /// </summary>
     public void BallCornered()
     {
-        reward += -0.15f;
+        reward += -0.05f;
     }
     #endregion
 }
