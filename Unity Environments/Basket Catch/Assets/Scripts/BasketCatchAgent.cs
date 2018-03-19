@@ -47,9 +47,8 @@ public class BasketCatchAgent : Agent
     /// <summary>
     /// Executes the raycasts to observe the state
     /// </summary>
-    /// <returns></returns>
-    public override List<float> CollectState()
-	{
+    public override void CollectObservations()
+    {
         List<float> state = new List<float>();
 
         // Initialize and update rays
@@ -60,7 +59,7 @@ public class BasketCatchAgent : Agent
         {
             visionRays.Add(new Ray(new Vector3(transform.position.x, yPos, transform.position.z), transform.up));
         }
-        
+
         // Additional rays start from the outer edges of the basket
         float left = transform.position.x - (transform.localScale.x / 2);
         for (int i = 0; i < _numAdditionalRays / 2; i++)
@@ -112,21 +111,22 @@ public class BasketCatchAgent : Agent
         state.Add(Mathf.Abs(_env.BoundaryLeft.position.x - transform.position.x) / 18);
         // Add distance to right wall
         state.Add(Mathf.Abs(_env.BoundaryRight.position.x - transform.position.x) / 18);
-        
-        return state;
-	}
+
+        AddVectorObs(state);
+    }
 
     /// <summary>
     /// Execution of actions inside of FixedUpdate()
     /// </summary>
-    /// <param name="act">Action vector</param>
-	public override void AgentStep(float[] act)
-	{
+    /// <param name="vectorAction"></param>
+    /// <param name="textAction"></param>
+    public override void AgentAction(float[] vectorAction, string textAction)
+    {
         if (brain.brainType.Equals(BrainType.External))
         {
-            if (brain.brainParameters.actionSpaceType == StateType.discrete)
+            if (brain.brainParameters.vectorActionSpaceType == SpaceType.discrete)
             {
-                int action = (int)act[0];
+                int action = (int)vectorAction[0];
                 if (action == 0)
                 {
                     // Move Left
@@ -156,6 +156,9 @@ public class BasketCatchAgent : Agent
         }
     }
 
+    /// <summary>
+    /// Resets the agent to its original location and clears the score.
+    /// </summary>
 	public override void AgentReset()
 	{
         transform.position = _agentOrigin;
@@ -186,12 +189,12 @@ public class BasketCatchAgent : Agent
     {
         if (itemType.Equals(ItemType.Reward))
         {
-            reward += 1;
+            AddReward(1.0f);
             _rewardScore += 1;
         }
         else
         {
-            reward -= 1;
+            AddReward(-1.0f);
             _punishmentScore -= 1;
         }
         _scoreText.text = "<color=blue>R +" + _rewardScore + "</color>: <color=red>P " + _punishmentScore + "</color>: S: " + (_rewardScore + _punishmentScore);

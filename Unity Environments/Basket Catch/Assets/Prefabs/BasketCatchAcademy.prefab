@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 4721752029328770}
   - component: {fileID: 114443458264917084}
   m_Layer: 0
-  m_Name: Brain
+  m_Name: BasketCatchBrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,22 +82,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brainParameters:
-    stateSize: 28
-    actionSize: 3
-    memorySize: 0
+    vectorObservationSize: 28
+    numStackedVectorObservations: 4
+    vectorActionSize: 3
     cameraResolutions: []
-    actionDescriptions:
+    vectorActionDescriptions:
     - Move Left
     - Move Right
     - Do Nothing
-    actionSpaceType: 0
-    stateSpaceType: 1
+    vectorActionSpaceType: 0
+    vectorObservationSpaceType: 1
   brainType: 2
   CoreBrains:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  instanceID: 11082
+  - {fileID: 0}
+  instanceID: -1188
 --- !u!114 &114569279897106562
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -110,9 +111,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteps: 5000
-  frameToSkip: 0
-  waitTime: 0
-  isInference: 0
   trainingConfiguration:
     width: 640
     height: 360
@@ -125,7 +123,5 @@ MonoBehaviour:
     qualityLevel: 5
     timeScale: 1
     targetFrameRate: 60
-  defaultResetParameters: []
-  done: 0
-  episodeCount: 1
-  currentStep: 0
+  resetParameters:
+    resetParameters: []
