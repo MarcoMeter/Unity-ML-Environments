@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 4411916228567052}
   - component: {fileID: 114726646641420898}
   m_Layer: 0
-  m_Name: Brain
+  m_Name: SCCBrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,24 +82,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brainParameters:
-    stateSize: 5
-    actionSize: 2
-    memorySize: 0
-    cameraResolutions:
-    - width: 64
-      height: 64
-      blackAndWhite: 1
-    actionDescriptions:
-    - 
-    - 
-    actionSpaceType: 1
-    stateSpaceType: 1
+    vectorObservationSize: 5
+    numStackedVectorObservations: 1
+    vectorActionSize: 2
+    cameraResolutions: []
+    vectorActionDescriptions:
+    - Horizontal Movement
+    - Vertical movement
+    vectorActionSpaceType: 1
+    vectorObservationSpaceType: 1
   brainType: 2
   CoreBrains:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  instanceID: -2912
+  - {fileID: 0}
+  instanceID: 12408
 --- !u!114 &114888688982264422
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -111,10 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be08ecd0b472a9644b3ee802431bfc98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSteps: 5000
-  frameToSkip: 0
-  waitTime: 0
-  isInference: 1
+  maxSteps: 1000
   trainingConfiguration:
     width: 320
     height: 180
@@ -127,7 +122,5 @@ MonoBehaviour:
     qualityLevel: 0
     timeScale: 1
     targetFrameRate: 60
-  defaultResetParameters: []
-  done: 0
-  episodeCount: 1
-  currentStep: 0
+  resetParameters:
+    resetParameters: []

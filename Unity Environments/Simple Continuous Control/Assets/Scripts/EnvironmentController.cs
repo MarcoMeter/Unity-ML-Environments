@@ -80,7 +80,7 @@ public class EnvironmentController : MonoBehaviour
         float hLimit = (_horizontalLimit / 2) - 0.25f;
         float vLimit = (_verticalLimit / 2) - 0.25f;
         Vector3 randomPosition = new Vector3(Random.Range(-hLimit, hLimit), Random.Range(-vLimit, vLimit), 0);
-        _currentTarget = Instantiate(_targetPrefab, randomPosition, Quaternion.identity, transform);
+        _currentTarget = Instantiate(_targetPrefab, randomPosition, Quaternion.Euler(0, 0, 45), transform);
         _currentTarget.transform.localPosition = randomPosition;
     }
     #endregion
