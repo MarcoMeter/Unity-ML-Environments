@@ -110,12 +110,16 @@ MonoBehaviour:
   brainParameters:
     vectorObservationSize: 51
     numStackedVectorObservations: 3
-    vectorActionSize: 2
+    vectorActionSize: 6
     cameraResolutions: []
     vectorActionDescriptions:
-    - 
-    - 
-    vectorActionSpaceType: 1
+    - Rotate left
+    - Rotate right
+    - Shoot
+    - Rotate left shoot
+    - Rotate right shoot
+    - Do nothing
+    vectorActionSpaceType: 0
     vectorObservationSpaceType: 1
   brainType: 2
   CoreBrains:
@@ -123,4 +127,4 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  instanceID: -1126
+  instanceID: 10806

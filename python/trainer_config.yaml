@@ -19,11 +19,15 @@ default:
     use_recurrent: false
 
 DC2DBrain:
-    batch_size: 128
-    buffer_size: 4096
-    lambd: 0.95
+    batch_size: 64
+    beta: 5.0e-3
+    buffer_size: 1024
+    epsilon: 0.2
+    gamma: 0.99
+    hidden_units: 20
     max_steps: 5.0e5
-    time_horizon: 64
+    num_epoch: 5
+    num_layers: 2
     summary_freq: 1000
     
 SCCBrain:

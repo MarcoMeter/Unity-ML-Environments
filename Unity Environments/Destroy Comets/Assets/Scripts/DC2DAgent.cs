@@ -91,51 +91,43 @@ public class DC2DAgent : Agent
     /// <param name="textAction"></param>
     public override void AgentAction(float[] vectorAction, string textAction)
     {
-        // External control
+        // External discrete control
         if (brain.brainType.Equals(BrainType.External))
         {
-            // Two continuous actions: rotate and shoot
-            if (brain.brainParameters.vectorActionSpaceType.Equals(SpaceType.continuous))
-            {
-                // Agent's rotation
-                float zRotation = Mathf.Clamp(vectorAction[0], -_maxRotationStep, _maxRotationStep);
-                transform.Rotate(new Vector3(0, 0, zRotation));
+            // Six discrete actions: rotate left, right, shoot and do noting
+            // Plus: Combining the rotations with shooting
+            int action = (int)vectorAction[0];
 
-                // Shoot
-                float shootAction = Mathf.Clamp(vectorAction[1], 0, 1);
-                if (shootAction <= 0.8f)
-                {
-                    // Don't shoot
-                }
-                else if (shootAction > 0.8f)
-                {
-                    Shoot();
-                }
+            if (action == 0)
+            {
+                // Rotate left
+                transform.Rotate(new Vector3(0, 0, -_maxRotationStep));
             }
-            // Four discrete actions: rotate left, right, shoot and do noting
-            else if (brain.brainParameters.vectorActionSpaceType.Equals(SpaceType.discrete))
+            else if (action == 1)
             {
-                int action = (int)vectorAction[0];
-
-                if (action == 0)
-                {
-                    // Rotate Left
-                    transform.Rotate(new Vector3(0, 0, -_maxRotationStep));
-                }
-                else if (action == 1)
-                {
-                    // Rotate Right
-                    transform.Rotate(new Vector3(0, 0, _maxRotationStep));
-                }
-                else if (action == 2)
-                {
-                    // Shoot
-                    Shoot();
-                }
-                else
-                {
-                    // Do nothing
-                }
+                // Rotate right
+                transform.Rotate(new Vector3(0, 0, _maxRotationStep));
+            }
+            else if (action == 2)
+            {
+                // Shoot
+                Shoot();
+            }
+            else if (action == 3)
+            {
+                // Rotate left and shoot
+                transform.Rotate(new Vector3(0, 0, -_maxRotationStep));
+                Shoot();
+            }
+            else if (action == 4)
+            {
+                // Rotate right and shoot
+                transform.Rotate(new Vector3(0, 0, -_maxRotationStep));
+                Shoot();
+            }
+            else
+            {
+                // Do nothing
             }
         }
 
@@ -204,6 +196,7 @@ public class DC2DAgent : Agent
     {
         GameObject rocket = Instantiate(_rocket, _cannonBarrel.position, transform.rotation);
         rocket.GetComponent<Rigidbody>().velocity = (_barrelEnd.position - _cannonBarrel.position).normalized * _rocketSpeed;
+        AddReward(-0.05f);
     }
     #endregion
 }
