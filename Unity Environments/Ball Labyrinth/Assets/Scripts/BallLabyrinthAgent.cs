@@ -55,38 +55,38 @@ public class BallLabyrinthAgent : Agent
         _ballRigidbody.velocity = Vector3.zero;
         transform.localEulerAngles = Vector3.zero;
     }
-
+    
     /// <summary>
     ///  Gathering inputs.
     /// </summary>
-    /// <returns></returns>
-    public override List<float> CollectState()
+    public override void CollectObservations()
     {
         // Total 43 inputs
         List<float> state = _ballBehavior.CollectBallState(); // 40 inputs collected
         state.Add(transform.localEulerAngles.x / 360f);
         state.Add(transform.localEulerAngles.z / 360f);
         state.Add(Convert.ToSingle(_ballBehavior.IsCornered));
-        return state;
+        AddVectorObs(state);
     }
 
     /// <summary>
     /// Executing decisions.
     /// </summary>
-    /// <param name="action"></param>
-    public override void AgentStep(float[] action)
+    /// <param name="vectorAction"></param>
+    /// <param name="textAction"></param>
+    public override void AgentAction(float[] vectorAction, string textAction)
     {
         if (brain.brainType.Equals(BrainType.External))
         {
             // Z rotation
-            float zRotation = Mathf.Clamp(action[0], -1f, 1f);
+            float zRotation = Mathf.Clamp(vectorAction[0], -1f, 1f);
             transform.Rotate(new Vector3(0, 0, -1), zRotation, Space.Self);
 
             // X rotation
-            float xRotation = Mathf.Clamp(action[1], -1f, 1f);
+            float xRotation = Mathf.Clamp(vectorAction[1], -1f, 1f);
             transform.Rotate(new Vector3(1, 0, 0), xRotation, Space.World);
         }
-        else if(brain.brainType.Equals(BrainType.Player))
+        else if (brain.brainType.Equals(BrainType.Player))
         {
             transform.Rotate(new Vector3(0, 0, -1), _playerHorizontal, Space.Self);
             transform.Rotate(new Vector3(1, 0, 0), _playerVertical, Space.World);
@@ -105,8 +105,8 @@ public class BallLabyrinthAgent : Agent
     /// </summary>
     public void BallOutOfBounds()
     {
-        done = true;
-        reward += -1f;
+        Done();
+        AddReward(-1.0f);
     }
 
     /// <summary>
@@ -114,8 +114,8 @@ public class BallLabyrinthAgent : Agent
     /// </summary>
     public void BallFinish()
     {
-        done = true;
-        reward += 1.25f;
+        Done();
+        AddReward(1.25f);
     }
 
     /// <summary>
@@ -123,7 +123,7 @@ public class BallLabyrinthAgent : Agent
     /// </summary>
     public void BallCornered()
     {
-        reward += -0.05f;
+        AddReward(-0.05f);
     }
     #endregion
 }

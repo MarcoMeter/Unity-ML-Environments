@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4772056832098460}
   - component: {fileID: 114154994389727532}
   m_Layer: 0
-  m_Name: Brain
+  m_Name: BallLabyrinthBrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,21 +82,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brainParameters:
-    stateSize: 43
-    actionSize: 2
-    memorySize: 0
+    vectorObservationSize: 43
+    numStackedVectorObservations: 1
+    vectorActionSize: 2
     cameraResolutions: []
-    actionDescriptions:
-    - 
-    - 
-    actionSpaceType: 1
-    stateSpaceType: 1
+    vectorActionDescriptions:
+    - Rotate Z
+    - Rotate X
+    vectorActionSpaceType: 1
+    vectorObservationSpaceType: 1
   brainType: 2
   CoreBrains:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  instanceID: 25506
+  - {fileID: 0}
+  instanceID: -40314
 --- !u!114 &114781173271482536
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -109,9 +110,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteps: 7500
-  frameToSkip: 4
-  waitTime: 0
-  isInference: 1
   trainingConfiguration:
     width: 640
     height: 360
@@ -124,9 +122,7 @@ MonoBehaviour:
     qualityLevel: 5
     timeScale: 1
     targetFrameRate: 60
-  defaultResetParameters:
-  - key: positionIndex
-    value: 12
-  done: 0
-  episodeCount: 0
-  currentStep: 0
+  resetParameters:
+    resetParameters:
+    - key: positionIndex
+      value: 12

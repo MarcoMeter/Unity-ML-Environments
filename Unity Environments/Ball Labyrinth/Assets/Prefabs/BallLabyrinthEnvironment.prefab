@@ -4836,18 +4836,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brain: {fileID: 0}
-  observations:
-  - {fileID: 20029453709311360}
-  maxStep: 7500
-  resetOnDone: 1
-  reward: 0
-  done: 0
-  value: 0
-  CumulativeReward: 0
-  stepCounter: 0
-  agentStoredAction: []
-  memory: []
-  id: 0
+  agentParameters:
+    agentCameras:
+    - {fileID: 20029453709311360}
+    maxStep: 0
+    resetOnDone: 1
+    onDemandDecision: 0
+    numberOfActionsBetweenDecisions: 1
   _ballPositions:
   - {fileID: 4493450166791506}
   - {fileID: 4633229807819150}
