@@ -18,6 +18,14 @@ default:
     summary_freq: 1000
     use_recurrent: false
 
+DC2DBrain:
+    batch_size: 128
+    buffer_size: 4096
+    lambd: 0.95
+    max_steps: 5.0e5
+    time_horizon: 64
+    summary_freq: 1000
+    
 SCCBrain:
     batch_size: 32
     buffer_size: 512

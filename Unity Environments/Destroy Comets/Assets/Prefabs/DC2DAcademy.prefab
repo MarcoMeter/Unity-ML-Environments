@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4539143999081098}
   - component: {fileID: 114855026416539798}
   m_Layer: 0
-  m_Name: Brain
+  m_Name: DC2DBrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,9 +82,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteps: 5000
-  frameToSkip: 0
-  waitTime: 0
-  isInference: 0
   trainingConfiguration:
     width: 320
     height: 180
@@ -97,10 +94,8 @@ MonoBehaviour:
     qualityLevel: 5
     timeScale: 1
     targetFrameRate: 60
-  defaultResetParameters: []
-  done: 0
-  episodeCount: 0
-  currentStep: 0
+  resetParameters:
+    resetParameters: []
 --- !u!114 &114855026416539798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -113,20 +108,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brainParameters:
-    stateSize: 51
-    actionSize: 4
-    memorySize: 0
+    vectorObservationSize: 51
+    numStackedVectorObservations: 3
+    vectorActionSize: 2
     cameraResolutions: []
-    actionDescriptions:
-    - Rotate Left
-    - Rotate Right
-    - Shoot
+    vectorActionDescriptions:
     - 
-    actionSpaceType: 0
-    stateSpaceType: 1
+    - 
+    vectorActionSpaceType: 1
+    vectorObservationSpaceType: 1
   brainType: 2
   CoreBrains:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  instanceID: 17638
+  - {fileID: 0}
+  instanceID: -1126

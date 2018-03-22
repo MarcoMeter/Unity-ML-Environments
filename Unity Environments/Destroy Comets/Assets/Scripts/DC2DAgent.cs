@@ -37,10 +37,9 @@ public class DC2DAgent : Agent
     }
 
     /// <summary>
-    /// Executes the raycasts to observe the state
+    /// Collects the agent's inputs using majorly raycasts.
     /// </summary>
-    /// <returns></returns>
-    public override List<float> CollectState()
+    public override void CollectObservations()
     {
         List<float> state = new List<float>();
 
@@ -48,7 +47,7 @@ public class DC2DAgent : Agent
         _rays = new List<Ray>();
         for (int i = 0; i < _numVisionRays; i++)
         {
-            Vector3 circumferencePoint = new Vector3(transform.position.x + (_visionRayLength * Mathf.Cos((+  0 + (_angleStep * i)) * Mathf.Deg2Rad)),
+            Vector3 circumferencePoint = new Vector3(transform.position.x + (_visionRayLength * Mathf.Cos((+0 + (_angleStep * i)) * Mathf.Deg2Rad)),
                                             transform.position.y + (_visionRayLength * Mathf.Sin((transform.rotation.eulerAngles.z + 0 + (_angleStep * i)) * Mathf.Deg2Rad)),
                                             0);
             _rays.Add(new Ray(transform.position, (circumferencePoint - transform.position).normalized));
@@ -82,28 +81,28 @@ public class DC2DAgent : Agent
         Vector3 shootingDirection = (_barrelEnd.position - _cannonBarrel.position).normalized;
         state.Add(shootingDirection.x);
         state.Add(shootingDirection.y);
-
-        return state;
+        AddVectorObs(state);
     }
 
     /// <summary>
     /// Execution of actions inside of FixedUpdate()
     /// </summary>
-    /// <param name="act">Action vector</param>
-    public override void AgentStep(float[] act)
+    /// <param name="vectorAction"></param>
+    /// <param name="textAction"></param>
+    public override void AgentAction(float[] vectorAction, string textAction)
     {
         // External control
-        if(brain.brainType.Equals(BrainType.External))
+        if (brain.brainType.Equals(BrainType.External))
         {
             // Two continuous actions: rotate and shoot
-            if (brain.brainParameters.actionSpaceType.Equals(StateType.continuous))
+            if (brain.brainParameters.vectorActionSpaceType.Equals(SpaceType.continuous))
             {
                 // Agent's rotation
-                float zRotation = Mathf.Clamp(act[0], -_maxRotationStep, _maxRotationStep);
+                float zRotation = Mathf.Clamp(vectorAction[0], -_maxRotationStep, _maxRotationStep);
                 transform.Rotate(new Vector3(0, 0, zRotation));
 
                 // Shoot
-                float shootAction = Mathf.Clamp(act[1], 0, 1);
+                float shootAction = Mathf.Clamp(vectorAction[1], 0, 1);
                 if (shootAction <= 0.8f)
                 {
                     // Don't shoot
@@ -114,9 +113,9 @@ public class DC2DAgent : Agent
                 }
             }
             // Four discrete actions: rotate left, right, shoot and do noting
-            else if (brain.brainParameters.actionSpaceType.Equals(StateType.discrete))
+            else if (brain.brainParameters.vectorActionSpaceType.Equals(SpaceType.discrete))
             {
-                int action = (int)act[0];
+                int action = (int)vectorAction[0];
 
                 if (action == 0)
                 {
@@ -128,7 +127,7 @@ public class DC2DAgent : Agent
                     // Rotate Right
                     transform.Rotate(new Vector3(0, 0, _maxRotationStep));
                 }
-                else if(action == 2)
+                else if (action == 2)
                 {
                     // Shoot
                     Shoot();
@@ -141,7 +140,7 @@ public class DC2DAgent : Agent
         }
 
         // Player control
-        if(brain.brainType.Equals(BrainType.Player))
+        if (brain.brainType.Equals(BrainType.Player))
         {
             // Make cannon look at mouse
             transform.up = ((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2)transform.position).normalized;
@@ -158,7 +157,7 @@ public class DC2DAgent : Agent
     {
         if (other.tag.Equals("Comet"))
         {
-            reward -= 1;
+            RewardAgent(-1.0f);
             Destroy(other.gameObject);
         }
     }
@@ -193,7 +192,7 @@ public class DC2DAgent : Agent
     /// <param name="r">The reward to apply to the agent.</param>
     public void RewardAgent(float r)
     {
-        reward += r;
+        AddReward(r);
     }
     #endregion
 
