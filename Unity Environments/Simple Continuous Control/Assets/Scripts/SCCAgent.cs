@@ -37,13 +37,13 @@ public class SCCAgent : Agent
     public override void CollectObservations()
     {
         List<float> state = new List<float>();
-        Vector3 dir = (_env.TargetPosition - transform.position).normalized;
-        state.Add(dir.x);
-        state.Add(dir.y);
+        Vector3 relativePosition = transform.position - _env.TargetPosition;
+        state.Add(relativePosition.x / 9);
+        state.Add(relativePosition.y / 9);
+
         Vector3 vel = _rigidbody.velocity.normalized;
         state.Add(vel.x);
         state.Add(vel.y);
-        state.Add(Vector3.Distance(_env.TargetPosition, transform.position) / 16);
         AddVectorObs(state);
     }
 

@@ -15,7 +15,7 @@ The agent moves continuously based on one action specifiyng the direction to mov
 
 ### State Input
 
-The agent receives 5 continuos inputs: direction vector to the target (x & y, the agent's velocity (x & y) and the remaining distance to the target. 
+The agent receives 4 continuos inputs: agent's relative position to the target (x & y) and the agent's velocity (x & y). 
 
 ### Reward Signals
 
