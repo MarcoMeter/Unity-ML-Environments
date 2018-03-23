@@ -84,11 +84,10 @@ MonoBehaviour:
   brainParameters:
     vectorObservationSize: 5
     numStackedVectorObservations: 1
-    vectorActionSize: 2
+    vectorActionSize: 1
     cameraResolutions: []
     vectorActionDescriptions:
-    - Horizontal Movement
-    - Vertical movement
+    - 
     vectorActionSpaceType: 1
     vectorObservationSpaceType: 1
   brainType: 2
@@ -97,7 +96,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  instanceID: 12408
+  instanceID: -185708
 --- !u!114 &114888688982264422
 MonoBehaviour:
   m_ObjectHideFlags: 1

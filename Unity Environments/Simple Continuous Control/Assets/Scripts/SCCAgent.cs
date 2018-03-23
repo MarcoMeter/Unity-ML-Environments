@@ -14,14 +14,20 @@ public class SCCAgent : Agent
     #endregion
 
     #region Unity ML Agents
+    /// <summary>
+    /// Saves the original position of the agent, which indicates the center of the environment.
+    /// </summary>
     public override void InitializeAgent()
     {
         _origin = transform.position;
     }
 
+    /// <summary>
+    /// Resets the agent to a random position.
+    /// </summary>
     public override void AgentReset()
     {
-        transform.position = _origin;
+        transform.position = new Vector3(_origin.x + Random.Range((-_env.HorizontalLimit / 2) + 1, (_env.HorizontalLimit / 2) - 1), _origin.y + Random.Range((-_env.VerticalLimit / 2) + 1, (_env.VerticalLimit / 2)) - 1, 0);
         _env.ResetTarget();
     }
 
@@ -42,39 +48,32 @@ public class SCCAgent : Agent
     }
 
     /// <summary>
-    /// Execuites the agent's movement.
+    /// Executes the agent's movement based on choosing a moving direction.
+    /// Player Input is available as well.
     /// </summary>
     public override void AgentAction(float[] vectorAction, string textAction)
     {
         // External: Execute the agents movement
         if (brain.brainType.Equals(BrainType.External))
         {
-            // Two continuous actions
+            // One continuous action
             if (brain.brainParameters.vectorActionSpaceType == SpaceType.continuous)
             {
-                float moveHorizontal = Mathf.Clamp(vectorAction[0], -1, 1) * _speed;
-                float moveVertical = Mathf.Clamp(vectorAction[1], -1, 1) * _speed;
-                _rigidbody.velocity = new Vector3(moveHorizontal, moveVertical, 0);
-            }
-            // Four discrete actions
-            else
-            {
-                int actionIndex = (int)vectorAction[0];
-                switch (actionIndex)
+                // Process the action
+                float rotationAngle = Mathf.Clamp(vectorAction[0], -1, 1) * 180;
+                // Retrieve position form unit circle
+                Vector3 circumferencePoint = new Vector3((Mathf.Cos(rotationAngle * Mathf.Deg2Rad)),
+                                                        (Mathf.Sin(rotationAngle * Mathf.Deg2Rad)),
+                                                        0);
+                // Apply velocity based on direction (coming from the unit circle)
+                _rigidbody.velocity = circumferencePoint.normalized * _speed;
+                
+                // Penalize the agent for picking actions, which exceed the absolute threshold of one.
+                if(Mathf.Abs(vectorAction[0]) > 1.0f)
                 {
-                    case 0:
-                        _rigidbody.velocity = new Vector3(-_speed, 0, 0);
-                        break;
-                    case 1:
-                        _rigidbody.velocity = new Vector3(_speed, 0, 0);
-                        break;
-                    case 2:
-                        _rigidbody.velocity = new Vector3(0, -_speed, 0);
-                        break;
-                    case 4:
-                        _rigidbody.velocity = new Vector3(0, _speed, 0);
-                        break;
+                    AddReward(-0.0025f * Mathf.Abs(vectorAction[0]));
                 }
+                Monitor.Log("Action", Mathf.Clamp(vectorAction[0], -1, 1), MonitorType.slider);
             }
         }
 
@@ -97,7 +96,7 @@ public class SCCAgent : Agent
     {
         if(other.tag.Equals("Target"))
         {
-            AddReward(1.0f);
+            AddReward(2.0f);
             _env.ResetTarget();
         }
     }

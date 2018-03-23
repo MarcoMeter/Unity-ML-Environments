@@ -227,7 +227,7 @@ MonoBehaviour:
     maxStep: 1000
     resetOnDone: 1
     onDemandDecision: 0
-    numberOfActionsBetweenDecisions: 1
+    numberOfActionsBetweenDecisions: 3
   _rigidbody: {fileID: 54058839362071788}
   _env: {fileID: 114543539177530662}
   _speed: 3

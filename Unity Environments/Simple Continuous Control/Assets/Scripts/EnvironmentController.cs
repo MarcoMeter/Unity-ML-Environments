@@ -34,14 +34,20 @@ public class EnvironmentController : MonoBehaviour
     #endregion
 
     #region Unity Lifecycle
+    /// <summary>
+    /// Initial setup of the environment by placing walls and obstalces.
+    /// </summary>
     private void Start()
     {
         BuildWalls();
-        BuildObstacles();
+        BuildObstacles(); // Not implemented yet
     }
     #endregion
 
     #region Public Functions
+    /// <summary>
+    /// Destroys the existing target and instantiates a new one.
+    /// </summary>
    public void ResetTarget()
     {
         Destroy(_currentTarget);
@@ -50,6 +56,9 @@ public class EnvironmentController : MonoBehaviour
     #endregion
 
     #region Private Functions
+    /// <summary>
+    /// Establishes the boundaries of the environment.
+    /// </summary>
     private void BuildWalls()
     {
         // Wall Left
@@ -70,11 +79,17 @@ public class EnvironmentController : MonoBehaviour
         wall.transform.localScale = new Vector3(_horizontalLimit + 2, 1, 1);
     }
 
+    /// <summary>
+    /// TODO. Randomly places obstacles inside the envionment's limits.
+    /// </summary>
     private void BuildObstacles()
     {
         // randomly spawn obstacles
     }
 
+    /// <summary>
+    /// Spawns the target at a random position inside the environment's boundaries.
+    /// </summary>
     private void SpawnTarget()
     {
         float hLimit = (_horizontalLimit / 2) - 0.25f;
