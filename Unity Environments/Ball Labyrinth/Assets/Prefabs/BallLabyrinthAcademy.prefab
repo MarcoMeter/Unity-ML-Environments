@@ -97,7 +97,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  instanceID: -40314
+  instanceID: -141510
 --- !u!114 &114781173271482536
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32ae99262b3a7a742a1b43628858f603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSteps: 7500
+  maxSteps: 5000
   trainingConfiguration:
     width: 640
     height: 360

@@ -4441,7 +4441,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 9, y: 0.3, z: 7.5}
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!65 &65355089100408036
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -4452,8 +4452,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 1.2, z: 7.5}
-  m_Center: {x: -4.35, y: 0.3, z: 0}
+  m_Size: {x: 0.1, y: 2.4, z: 7.5}
+  m_Center: {x: -4.35, y: 1, z: 0}
 --- !u!65 &65392712625469820
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -4488,8 +4488,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 9, y: 1.2, z: 0.1}
-  m_Center: {x: 0, y: 0.3, z: 3.65}
+  m_Size: {x: 9, y: 2.4, z: 0.1}
+  m_Center: {x: 0, y: 1, z: 3.65}
 --- !u!65 &65424436604298114
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -4536,8 +4536,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 9, y: 1.2, z: 0.1}
-  m_Center: {x: 0, y: 0.3, z: -3.65}
+  m_Size: {x: 9, y: 2.4, z: 0.1}
+  m_Center: {x: 0, y: 1, z: -3.65}
 --- !u!65 &65502587472985746
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -4608,8 +4608,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 1.2, z: 7.5}
-  m_Center: {x: 4.35, y: 0.3, z: 0}
+  m_Size: {x: 0.1, y: 2.4, z: 7.5}
+  m_Center: {x: 4.35, y: 1, z: 0}
 --- !u!65 &65672569929982222
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -4798,7 +4798,7 @@ BoxCollider:
   m_GameObject: {fileID: 1126571639500216}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 9, y: 0.3, z: 7.5}
   m_Center: {x: 0, y: -0.35, z: 0}
@@ -4839,10 +4839,10 @@ MonoBehaviour:
   agentParameters:
     agentCameras:
     - {fileID: 20029453709311360}
-    maxStep: 0
+    maxStep: 5000
     resetOnDone: 1
     onDemandDecision: 0
-    numberOfActionsBetweenDecisions: 1
+    numberOfActionsBetweenDecisions: 3
   _ballPositions:
   - {fileID: 4493450166791506}
   - {fileID: 4633229807819150}

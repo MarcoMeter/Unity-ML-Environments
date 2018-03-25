@@ -115,7 +115,7 @@ public class BallLabyrinthAgent : Agent
     public void BallFinish()
     {
         Done();
-        AddReward(1.25f);
+        AddReward(1.5f);
     }
 
     /// <summary>
