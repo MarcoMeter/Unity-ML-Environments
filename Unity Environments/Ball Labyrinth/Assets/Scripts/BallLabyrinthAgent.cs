@@ -51,9 +51,9 @@ public class BallLabyrinthAgent : Agent
     /// </summary>
     public override void AgentReset()
     {
-        _ball.transform.position = _ballPositions[_academy.BallPositionIndex].position;
         _ballRigidbody.velocity = Vector3.zero;
         transform.localEulerAngles = Vector3.zero;
+        _ball.transform.position = _ballPositions[_academy.BallPositionIndex].position;
     }
     
     /// <summary>

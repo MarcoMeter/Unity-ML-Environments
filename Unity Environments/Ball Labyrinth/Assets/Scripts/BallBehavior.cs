@@ -52,7 +52,7 @@ public class BallBehavior : MonoBehaviour
         // Check if the ball is out of bounds based on position (not collision like above)
         Plane board = new Plane(_agent.transform.up, 0.1f);
         float distance = board.GetDistanceToPoint(transform.localPosition);
-        if (distance > 1.0f || distance < -1.0f)
+        if (distance > 2.0f || distance < -2.0f)
         {
             _agent.BallOutOfBounds();
         }
@@ -105,23 +105,21 @@ public class BallBehavior : MonoBehaviour
         List<float> ballState = new List<float>();
         // Add velocity
         Vector3 normalizedVelocity = _rigidbody.velocity.normalized;
-        ballState.Add(normalizedVelocity.x / 2f);
-        ballState.Add(normalizedVelocity.y / 2f);
-        ballState.Add(normalizedVelocity.z / 2f);
+        ballState.Add(normalizedVelocity.x);
+        ballState.Add(normalizedVelocity.y);
+        ballState.Add(normalizedVelocity.z);
         // Add relative position of the ball to the goal
-        Vector3 direction = (transform.position - _targetGoal.position).normalized;
-        ballState.Add(direction.x);
-        ballState.Add(direction.y);
-        ballState.Add(direction.z);
-        // Add distance between the ball and the goal
-        ballState.Add(Vector3.Distance(transform.position, _targetGoal.position) / _maxDistance);
+        Vector3 relativePosition = transform.position - _targetGoal.position;
+        ballState.Add(relativePosition.x / 7.5f);
+        ballState.Add(relativePosition.y / 4.5f);
+        ballState.Add(relativePosition.z / 7.5f);
 
         // Add ball height
         Ray verticalRay = new Ray(transform.position, -_agent.transform.up);
         RaycastHit floorHit;
-        if(Physics.Raycast(verticalRay, out floorHit, 0.5f))
+        if(Physics.Raycast(verticalRay, out floorHit, 1.0f))
         {
-            ballState.Add(floorHit.distance / 0.5f);
+            ballState.Add(floorHit.distance);
         }
         else
         {

@@ -82,7 +82,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brainParameters:
-    vectorObservationSize: 43
+    vectorObservationSize: 42
     numStackedVectorObservations: 1
     vectorActionSize: 2
     cameraResolutions: []
@@ -91,13 +91,13 @@ MonoBehaviour:
     - Rotate X
     vectorActionSpaceType: 1
     vectorObservationSpaceType: 1
-  brainType: 2
+  brainType: 0
   CoreBrains:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  instanceID: -141510
+  instanceID: 22710
 --- !u!114 &114781173271482536
 MonoBehaviour:
   m_ObjectHideFlags: 1
