@@ -91,13 +91,13 @@ MonoBehaviour:
     - Rotate X
     vectorActionSpaceType: 1
     vectorObservationSpaceType: 1
-  brainType: 0
+  brainType: 2
   CoreBrains:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  instanceID: 22710
+  instanceID: 26182
 --- !u!114 &114781173271482536
 MonoBehaviour:
   m_ObjectHideFlags: 1
