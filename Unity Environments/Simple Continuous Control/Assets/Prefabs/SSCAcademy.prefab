@@ -82,13 +82,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brainParameters:
-    vectorObservationSize: 4
+    vectorObservationSize: 0
     numStackedVectorObservations: 1
-    vectorActionSize: 1
-    cameraResolutions: []
+    vectorActionSize: 4
+    cameraResolutions:
+    - width: 84
+      height: 84
+      blackAndWhite: 0
     vectorActionDescriptions:
     - 
-    vectorActionSpaceType: 1
+    - 
+    - 
+    - 
+    vectorActionSpaceType: 0
     vectorObservationSpaceType: 1
   brainType: 2
   CoreBrains:
@@ -96,7 +102,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  instanceID: 16842
+  instanceID: -1154
 --- !u!114 &114888688982264422
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -108,10 +114,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be08ecd0b472a9644b3ee802431bfc98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSteps: 1000
+  maxSteps: 2000
   trainingConfiguration:
-    width: 320
-    height: 180
+    width: 640
+    height: 360
     qualityLevel: 0
     timeScale: 100
     targetFrameRate: -1

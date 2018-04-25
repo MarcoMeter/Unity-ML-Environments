@@ -44,7 +44,7 @@ public class SCCAgent : Agent
         Vector3 vel = _rigidbody.velocity.normalized;
         state.Add(vel.x);
         state.Add(vel.y);
-        AddVectorObs(state);
+        //AddVectorObs(state);
     }
 
     /// <summary>
@@ -74,6 +74,26 @@ public class SCCAgent : Agent
                     AddReward(-0.0025f * Mathf.Abs(vectorAction[0]));
                 }
                 Monitor.Log("Action", Mathf.Clamp(vectorAction[0], -1, 1), MonitorType.slider);
+            }
+            else if(brain.brainParameters.vectorActionSpaceType == SpaceType.discrete)
+            {
+                int action = Mathf.FloorToInt(vectorAction[0]);
+                if (action == 0)
+                {
+                    _rigidbody.velocity = new Vector3(-_speed, 0, 0);
+                }
+                else if (action == 1)
+                {
+                    _rigidbody.velocity = new Vector3(_speed, 0, 0);
+                }
+                else if(action == 2)
+                {
+                    _rigidbody.velocity = new Vector3(0, -_speed, 0);
+                }
+                else if(action == 3)
+                {
+                    _rigidbody.velocity = new Vector3(0, _speed, 0);
+                }
             }
         }
 
