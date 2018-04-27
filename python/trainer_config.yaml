@@ -29,20 +29,21 @@ DC2DBrain:
     num_epoch: 5
     num_layers: 2
     summary_freq: 1000
-    
+
 SCCBrain:
-    batch_size: 256
-    beta: 3.5e-3
-    buffer_size: 2048
-    epsilon: 0.5
-    hidden_units: 256
-    learning_rate: 2.5e-4
-    max_steps: 5.0e6
-    num_epoch: 5
+    learning_rate: 5.0e-5
+    batch_size: 64
+    normalize: false
     num_layers: 2
-    time_horizon: 1024
-    summary_freq: 10000
- 
+    hidden_units: 128
+    beta: 5.0e-3
+    gamma: 0.95
+    buffer_size: 256
+    max_steps: 5.0e5
+    summary_freq: 1000
+    time_horizon: 64
+    use_recurrent: false
+
 BasketCatchBrain:
     batch_size: 128
     beta: 1.0e-3
@@ -54,7 +55,7 @@ BasketCatchBrain:
     num_epoch: 5
     num_layers: 2
     time_horizon: 32
-    
+
 BallLabyrinthBrain:
     batch_size: 128
     beta: 1.0e-2

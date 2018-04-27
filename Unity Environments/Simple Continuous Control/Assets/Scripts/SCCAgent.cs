@@ -53,57 +53,52 @@ public class SCCAgent : Agent
     /// </summary>
     public override void AgentAction(float[] vectorAction, string textAction)
     {
-        // External: Execute the agents movement
-        if (brain.brainType.Equals(BrainType.External))
+
+        // One continuous action
+        if (brain.brainParameters.vectorActionSpaceType == SpaceType.continuous)
         {
-            // One continuous action
-            if (brain.brainParameters.vectorActionSpaceType == SpaceType.continuous)
+            // Process the action
+            float rotationAngle = Mathf.Clamp(vectorAction[0], -1, 1) * 180;
+            // Retrieve position form unit circle
+            Vector3 circumferencePoint = new Vector3((Mathf.Cos(rotationAngle * Mathf.Deg2Rad)),
+                                                    (Mathf.Sin(rotationAngle * Mathf.Deg2Rad)),
+                                                    0);
+            // Apply velocity based on direction (coming from the unit circle)
+            _rigidbody.velocity = circumferencePoint.normalized * _speed;
+            
+            // Penalize the agent for picking actions, which exceed the absolute threshold of one.
+            if(Mathf.Abs(vectorAction[0]) > 1.0f)
             {
-                // Process the action
-                float rotationAngle = Mathf.Clamp(vectorAction[0], -1, 1) * 180;
-                // Retrieve position form unit circle
-                Vector3 circumferencePoint = new Vector3((Mathf.Cos(rotationAngle * Mathf.Deg2Rad)),
-                                                        (Mathf.Sin(rotationAngle * Mathf.Deg2Rad)),
-                                                        0);
-                // Apply velocity based on direction (coming from the unit circle)
-                _rigidbody.velocity = circumferencePoint.normalized * _speed;
-                
-                // Penalize the agent for picking actions, which exceed the absolute threshold of one.
-                if(Mathf.Abs(vectorAction[0]) > 1.0f)
-                {
-                    AddReward(-0.0025f * Mathf.Abs(vectorAction[0]));
-                }
-                Monitor.Log("Action", Mathf.Clamp(vectorAction[0], -1, 1), MonitorType.slider);
+                AddReward(-0.0025f * Mathf.Abs(vectorAction[0]));
             }
-            else if(brain.brainParameters.vectorActionSpaceType == SpaceType.discrete)
+            Monitor.Log("Action", Mathf.Clamp(vectorAction[0], -1, 1), MonitorType.slider);
+        }
+        else if(brain.brainParameters.vectorActionSpaceType == SpaceType.discrete)
+        {
+            int action = Mathf.FloorToInt(vectorAction[0]);
+            if (action == 0)
             {
-                int action = Mathf.FloorToInt(vectorAction[0]);
-                if (action == 0)
-                {
-                    _rigidbody.velocity = new Vector3(-_speed, 0, 0);
-                }
-                else if (action == 1)
-                {
-                    _rigidbody.velocity = new Vector3(_speed, 0, 0);
-                }
-                else if(action == 2)
-                {
-                    _rigidbody.velocity = new Vector3(0, -_speed, 0);
-                }
-                else if(action == 3)
-                {
-                    _rigidbody.velocity = new Vector3(0, _speed, 0);
-                }
+                _rigidbody.velocity = new Vector3(-_speed, 0, 0);
             }
+            else if (action == 1)
+            {
+                _rigidbody.velocity = new Vector3(_speed, 0, 0);
+            }
+            else if (action == 2)
+            {
+                _rigidbody.velocity = new Vector3(0, -_speed, 0);
+            }
+            else if (action == 3)
+            {
+                _rigidbody.velocity = new Vector3(0, _speed, 0);
+            }
+            else
+            {
+                _rigidbody.velocity = new Vector3(0, 0, 0);
+            }
+            AddReward(-0.001f);
         }
 
-        // Player: Input behavior
-        if (brain.brainType.Equals(BrainType.Player))
-        {
-            float horizontal = Input.GetAxis("Horizontal") * _speed;
-            float vertical = Input.GetAxis("Vertical") * _speed;
-            _rigidbody.velocity = new Vector3(horizontal, vertical, 0);
-        }
     }
     #endregion
 
@@ -116,7 +111,9 @@ public class SCCAgent : Agent
     {
         if(other.tag.Equals("Target"))
         {
-            AddReward(2.0f);
+            
+            AddReward(1.0f);
+            Done();
             _env.ResetTarget();
         }
     }

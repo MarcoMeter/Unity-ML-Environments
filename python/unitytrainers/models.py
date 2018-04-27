@@ -90,11 +90,11 @@ class LearningModel(object):
         """
         conv1 = tf.layers.conv2d(self.visual_in[-1], 16, kernel_size=[8, 8], strides=[4, 4],
                                  activation=tf.nn.elu)
-        pool1 = tf.layers.max_pooling2d(inputs=conv1, pool_size=[2, 2], strides=2)
-        conv2 = tf.layers.conv2d(pool1, 32, kernel_size=[4, 4], strides=[2, 2],
+        # pool1 = tf.layers.max_pooling2d(inputs=conv1, pool_size=[2, 2], strides=2)
+        conv2 = tf.layers.conv2d(conv1, 32, kernel_size=[4, 4], strides=[2, 2],
                                  activation=tf.nn.elu)
-        pool2 = tf.layers.max_pooling2d(inputs=conv2, pool_size=[2, 2], strides=2)
-        hidden = c_layers.flatten(pool2)
+        # pool2 = tf.layers.max_pooling2d(inputs=conv2, pool_size=[2, 2], strides=2)
+        hidden = c_layers.flatten(conv2)
 
         for j in range(num_layers):
             hidden = tf.layers.dense(hidden, h_size, use_bias=False, activation=activation)

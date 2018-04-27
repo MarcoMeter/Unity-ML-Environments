@@ -96,13 +96,13 @@ MonoBehaviour:
     - 
     vectorActionSpaceType: 0
     vectorObservationSpaceType: 1
-  brainType: 2
+  brainType: 0
   CoreBrains:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  instanceID: -1154
+  instanceID: -2106
 --- !u!114 &114888688982264422
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be08ecd0b472a9644b3ee802431bfc98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSteps: 2000
+  maxSteps: 0
   trainingConfiguration:
     width: 640
     height: 360

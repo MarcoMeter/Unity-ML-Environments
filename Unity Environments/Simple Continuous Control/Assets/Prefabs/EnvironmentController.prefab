@@ -72,7 +72,7 @@ Transform:
   m_GameObject: {fileID: 1798339295714716}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4454084719073604}
   m_RootOrder: 0
@@ -84,7 +84,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1023365536465748}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 30, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4361752644062436}
@@ -119,7 +119,7 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 0.6
+    width: 1
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -224,13 +224,13 @@ MonoBehaviour:
   agentParameters:
     agentCameras:
     - {fileID: 20614539849228704}
-    maxStep: 1000
+    maxStep: 2000
     resetOnDone: 1
     onDemandDecision: 0
-    numberOfActionsBetweenDecisions: 3
+    numberOfActionsBetweenDecisions: 4
   _rigidbody: {fileID: 54058839362071788}
   _env: {fileID: 114543539177530662}
-  _speed: 3
+  _speed: 10
 --- !u!114 &114543539177530662
 MonoBehaviour:
   m_ObjectHideFlags: 1
