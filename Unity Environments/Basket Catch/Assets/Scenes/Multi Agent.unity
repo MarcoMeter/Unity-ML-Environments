@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 8
+  serializedVersion: 9
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
@@ -39,6 +39,7 @@ RenderSettings:
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
   m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -54,11 +55,10 @@ LightmapSettings:
     m_EnableBakedLightmaps: 1
     m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
-    serializedVersion: 9
+    serializedVersion: 10
     m_Resolution: 2
     m_BakeResolution: 40
-    m_TextureWidth: 1024
-    m_TextureHeight: 1024
+    m_AtlasSize: 1024
     m_AO: 0
     m_AOMaxDistance: 1
     m_CompAOExponent: 1
@@ -125,7 +125,8 @@ MonoBehaviour:
   m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: 
   broadcast: 1
-  continuousPlayerActions: []
+  keyContinuousPlayerActions: []
+  axisContinuousPlayerActions: []
   discretePlayerActions:
   - key: 276
     value: 0
@@ -190,7 +191,7 @@ Prefab:
     - target: {fileID: 224582076901167440, guid: 69f0029c3dbaeca4ca206389cc34dd5e,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 94
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224582076901167440, guid: 69f0029c3dbaeca4ca206389cc34dd5e,
         type: 2}
@@ -289,19 +290,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &94384563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 943466ab374444748a364f9d6c3e2fe2, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  broadcast: 1
-  brain: {fileID: 1638595975}
 --- !u!114 &107013730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,7 +354,7 @@ Prefab:
     - target: {fileID: 224582076901167440, guid: 69f0029c3dbaeca4ca206389cc34dd5e,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 94
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224582076901167440, guid: 69f0029c3dbaeca4ca206389cc34dd5e,
         type: 2}
@@ -445,18 +433,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 23cc3026060d2e648acad43c18e5d303, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &527160715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35813a1be64e144f887d7d5f15b963fa, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  brain: {fileID: 1638595975}
 --- !u!1001 &598568724
 Prefab:
   m_ObjectHideFlags: 0
@@ -504,7 +480,7 @@ Prefab:
     - target: {fileID: 224582076901167440, guid: 69f0029c3dbaeca4ca206389cc34dd5e,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 94
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224582076901167440, guid: 69f0029c3dbaeca4ca206389cc34dd5e,
         type: 2}
@@ -569,7 +545,7 @@ Prefab:
     - target: {fileID: 224582076901167440, guid: 69f0029c3dbaeca4ca206389cc34dd5e,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 94
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224582076901167440, guid: 69f0029c3dbaeca4ca206389cc34dd5e,
         type: 2}
@@ -634,7 +610,7 @@ Prefab:
     - target: {fileID: 224582076901167440, guid: 69f0029c3dbaeca4ca206389cc34dd5e,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 94
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224582076901167440, guid: 69f0029c3dbaeca4ca206389cc34dd5e,
         type: 2}
@@ -644,28 +620,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 69f0029c3dbaeca4ca206389cc34dd5e, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &1367098349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41e9bda8f3cf1492fa74926a530f6f70, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  broadcast: 1
-  continuousPlayerActions: []
-  discretePlayerActions:
-  - key: 276
-    value: 0
-  - key: 275
-    value: 1
-  - key: 95
-    value: -1
-  defaultAction: -1
-  brain: {fileID: 1638595975}
 --- !u!1001 &1566028986
 Prefab:
   m_ObjectHideFlags: 0
@@ -717,7 +671,7 @@ Prefab:
     - target: {fileID: 224582076901167440, guid: 69f0029c3dbaeca4ca206389cc34dd5e,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 94
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224582076901167440, guid: 69f0029c3dbaeca4ca206389cc34dd5e,
         type: 2}
@@ -788,7 +742,7 @@ Prefab:
     - target: {fileID: 224582076901167440, guid: 69f0029c3dbaeca4ca206389cc34dd5e,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 94
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224582076901167440, guid: 69f0029c3dbaeca4ca206389cc34dd5e,
         type: 2}
@@ -853,7 +807,7 @@ Prefab:
     - target: {fileID: 224582076901167440, guid: 69f0029c3dbaeca4ca206389cc34dd5e,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 94
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224582076901167440, guid: 69f0029c3dbaeca4ca206389cc34dd5e,
         type: 2}
@@ -980,7 +934,7 @@ Prefab:
     - target: {fileID: 224582076901167440, guid: 69f0029c3dbaeca4ca206389cc34dd5e,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 94
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224582076901167440, guid: 69f0029c3dbaeca4ca206389cc34dd5e,
         type: 2}

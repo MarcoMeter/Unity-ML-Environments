@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using MLAgents;
 
 public class SCCAgent : Agent
 {
@@ -71,7 +72,6 @@ public class SCCAgent : Agent
             {
                 AddReward(-0.0025f * Mathf.Abs(vectorAction[0]));
             }
-            Monitor.Log("Action", Mathf.Clamp(vectorAction[0], -1, 1), MonitorType.slider);
         }
         else if(brain.brainParameters.vectorActionSpaceType == SpaceType.discrete)
         {

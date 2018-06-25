@@ -1,4 +1,6 @@
-﻿public class SCCAcademy : Academy
+﻿using MLAgents;
+
+public class SCCAcademy : Academy
 {
     
 }

@@ -17,6 +17,9 @@ default:
     sequence_length: 64
     summary_freq: 1000
     use_recurrent: false
+    use_curiosity: false
+    curiosity_strength: 0.01
+    curiosity_enc_size: 128
 
 DC2DBrain:
     batch_size: 64

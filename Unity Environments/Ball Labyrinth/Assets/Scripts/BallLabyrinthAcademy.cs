@@ -1,4 +1,6 @@
-﻿public class BallLabyrinthAcademy : Academy
+﻿using MLAgents;
+
+public class BallLabyrinthAcademy : Academy
 {
     #region Member Fields
     private int _ballPositionIndex = 12;
